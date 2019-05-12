@@ -1,0 +1,20 @@
+html body {
+    background: #F8F9FA;
+    margin: 0;
+    padding: 0;
+    top: 0%;
+}
+
+.container {
+    margin: 5px;
+    padding: 5px;
+}
+.form-box {
+    margin-right: 15px;
+    margin-left: 15px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000000;
+}
