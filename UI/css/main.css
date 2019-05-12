@@ -13,6 +13,10 @@ html body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 60px;
+    margin: 0 0 30px;
 }
 .form-box {
     display: flex;
@@ -20,9 +24,53 @@ html body {
     align-items: center;
     margin-right: 15px;
     margin-left: 15px;
+    margin-top: 0rem;
     box-sizing: border-box;
     font-family: sans-serif;
     font-size: 14px;
     line-height: 1.4;
     color: #000000;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 13px;
+    height: auto;
+    border: 1px solid #e8e7e7;
+    outline: none;
+    color: #717171;
+    border-radius: 3px;
+}
+
+.signup-login {
+    background: #47A99C;
+    padding: 13px 20px 12px;
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    transition: .5s;
+    border-radius: 2px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    margin-bottom: 0;
+    display: block;
+    width: 100%;
+    user-select: none;
+    font-family: inherit;
+}
+
+.signup-login:focus {
+    background: rgb(42, 117, 107);
 }
