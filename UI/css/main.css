@@ -1,8 +1,13 @@
 html body {
-    background: #F8F9FA;
-    margin: 0;
-    padding: 0;
-    top: 0%;
+    background: rgb(224, 229, 233);
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .container {
@@ -22,22 +27,24 @@ html body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 20%;
+    border-radius: 5px;
     margin-top: 0rem;
-    box-sizing: border-box;
     font-family: sans-serif;
     font-size: 14px;
     line-height: 1.4;
     color: #000000;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
 }
 
 .form-group {
-    margin-bottom: 5px;
+    margin: 20px 0 5px 0;
 }
 
-input {
+input, select {
     width: 100%;
     padding: 10px 15px;
     font-size: 13px;
@@ -47,6 +54,12 @@ input {
     color: #717171;
     border-radius: 3px;
 }
+
+select option {
+    background: #47A99C;
+    font-size: 20px;
+}
+
 
 .signup-login {
     background: #47A99C;
@@ -64,7 +77,7 @@ input {
     touch-action: manipulation;
     cursor: pointer;
     border: 1px solid transparent;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     display: block;
     width: 100%;
     user-select: none;
@@ -74,3 +87,47 @@ input {
 .signup-login:focus {
     background: rgb(42, 117, 107);
 }
+
+/*
+##Device = Tablets, Ipads (portrait)
+##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .form-box {
+        width: 100%
+    }
+}
+
+/* 
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .form-box {
+        width: 100%
+    }
+}
+
+/* 
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .form-box {
+        width: 100%
+    }
+}
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .form-box {
+        width: 100%
+    }
+}
+  
