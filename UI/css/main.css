@@ -9,7 +9,15 @@ html body {
     margin: 5px;
     padding: 5px;
 }
+.container h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .form-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 15px;
     margin-left: 15px;
     box-sizing: border-box;
