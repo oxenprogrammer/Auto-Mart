@@ -14,15 +14,36 @@ html body {
     margin: 5px;
     padding: 5px;
 }
-.container h1 {
+
+.headings {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.headings h1 {
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 60px;
     margin: 0 0 30px;
+    cursor: pointer;
+    color: #47A99C;
 }
+
+.headings h1:hover {
+    color: rgb(52, 146, 134);
+    font-size: 18px;
+}
+
+.headings .signup {
+    margin-right: 20px;
+}
+
+.headings .login {
+    margin-left: 20px;
+}
+
 .form-box {
     display: flex;
     justify-content: center;
