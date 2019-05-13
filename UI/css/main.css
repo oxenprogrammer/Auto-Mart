@@ -40,6 +40,10 @@ html body {
     background: #ffffff;
 }
 
+#login {
+    display: none;
+}
+
 .form-group {
     margin: 20px 0 5px 0;
 }
