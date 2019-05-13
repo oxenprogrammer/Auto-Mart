@@ -61,6 +61,18 @@ html body {
     background: #ffffff;
 }
 
+.form-box h3 {
+    display: block;
+    text-align: center;
+    padding: 13px 20px 12px;
+    // background: #47A99C;
+    width: 280px;
+    height: 55px;
+    border-radius: 3px;
+    color: #47A99C;
+    font-size: 1.5rem;
+}
+
 #login {
     display: none;
 }
