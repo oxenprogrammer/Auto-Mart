@@ -14,15 +14,36 @@ html body {
     margin: 5px;
     padding: 5px;
 }
-.container h1 {
+
+.headings {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.headings h1 {
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 60px;
     margin: 0 0 30px;
+    cursor: pointer;
+    color: #47A99C;
 }
+
+.headings h1:hover {
+    color: rgb(52, 146, 134);
+    font-size: 18px;
+}
+
+.headings .signup {
+    margin-right: 20px;
+}
+
+.headings .login {
+    margin-left: 20px;
+}
+
 .form-box {
     display: flex;
     justify-content: center;
@@ -38,6 +59,22 @@ html body {
     color: #000000;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     background: #ffffff;
+}
+
+.form-box h3 {
+    display: block;
+    text-align: center;
+    padding: 13px 20px 12px;
+    // background: #47A99C;
+    width: 280px;
+    height: 55px;
+    border-radius: 3px;
+    color: #47A99C;
+    font-size: 1.5rem;
+}
+
+#login {
+    display: none;
 }
 
 .form-group {
