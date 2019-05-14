@@ -23,7 +23,7 @@ body {
 }
 
 .navbar ul {
-    padding: 8px 0 0 0 0;
+    margin: 8px 0 0 0 ;
     list-style: none;
 }
 
@@ -81,4 +81,10 @@ body {
     padding: 20px;
     overflow: hidden;
     width: 100%;
+}
+
+@media(max-width: 568px) {
+    .navbar-nav {
+        display: none;
+    }
 }
