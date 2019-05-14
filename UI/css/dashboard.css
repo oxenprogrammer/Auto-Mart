@@ -2,10 +2,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f4f4;
     overflow-x: auto;
+    margin: 0;
+    padding: 0;
 }
 .profile {
     padding: 10px 10px 10px 80px;
-    margin: 5px  5px 10px 5px;
+    margin: 5px  5px 40px 5px;
 }
 
 .profile .avatar {
@@ -27,12 +29,10 @@ body {
     background: #47A99C;
     overflow: hidden;
     height: 63px;
+    width: 100%;
 }
 
 .navbar a {
-    /* display: flex;
-    justify-content: start;
-    align-items: center; */
     display: block;
     float: right;
     color: #f2f2f2;
@@ -65,6 +65,11 @@ body {
     padding-top: 60px;
     transition: 0.5s ease-out;
 }
+
+/* .side-nav .task {
+    border: 1px solid rgb(35, 97, 89);
+    border-radius: 3px;
+} */
 
 .side-nav a {
     padding: 10px 10px 10px 30px;
