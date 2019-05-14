@@ -57,10 +57,10 @@ body {
     width: 0%;
     position: fixed;
     z-index: 1;
-    top: 8px;
+    top: 0px;
     left: 0;
     background: #47A99C;
-    opacity: 0.9;
+    /* opacity: 0.9; */
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s ease-out;
@@ -111,5 +111,8 @@ body {
 @media(max-width: 568px) {
     .navbar ul {
         display: none;
+    }
+    .navbar {
+        width: 100%;
     }
 }
