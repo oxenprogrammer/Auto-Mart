@@ -60,3 +60,25 @@ body {
     color: #47A99C;
     background: #cccccc;
 }
+
+.side-nav .btn-close a:hover {
+    background: #47A99C;
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.side-nav .btn-close {
+    position: absolute;
+    top: 0;
+    color: #ffffff;
+    right: 22px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left 0.5s;
+    padding: 20px;
+    overflow: hidden;
+    width: 100%;
+}
