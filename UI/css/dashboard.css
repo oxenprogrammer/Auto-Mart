@@ -31,3 +31,17 @@ body {
     background: #dddddd;
     color: #47A99C;
 }
+
+.side-nav {
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: #47A99C;
+    opacity: 0.9;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s ease-out;
+}
