@@ -1,6 +1,26 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f4f4;
+    overflow-x: auto;
+}
+.profile {
+    padding: 10px 10px 10px 80px;
+    margin: 5px  5px 10px 5px;
+}
+
+.profile .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profile .myname {
+    position: absolute;
+    left: 60px;
+    text-align: left;
+    color: #ffffff;
+    margin-top: 5px;
 }
 
 .navbar {
