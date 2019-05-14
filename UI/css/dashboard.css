@@ -1,0 +1,10 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f4f4;
+}
+
+.navbar {
+    background: #47A99C;
+    overflow: hidden;
+    height: 63px;
+}
