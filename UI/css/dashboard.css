@@ -37,7 +37,7 @@ body {
     width: 0%;
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: 8px;
     left: 0;
     background: #47A99C;
     opacity: 0.9;
@@ -84,7 +84,7 @@ body {
 }
 
 @media(max-width: 568px) {
-    .navbar-nav {
+    .navbar ul {
         display: none;
     }
 }
