@@ -14,7 +14,7 @@ body {
     justify-content: start;
     align-items: center; */
     display: block;
-    float: left;
+    float: right;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -44,4 +44,19 @@ body {
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s ease-out;
+}
+
+.side-nav a {
+    padding: 10px 10px 10px 30px;
+    margin: 0 5px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #cccccc;
+    display: block;
+    transition: 0.3s;
+}
+
+.side-nav a:hover {
+    color: #47A99C;
+    background: #cccccc;
 }
