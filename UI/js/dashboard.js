@@ -21,3 +21,10 @@ function offSideMenu() {
     const navbar = document.querySelector('.navbar');
     navbar.style.marginLeft = '0px';
 }
+
+const togglePostAd = () => {
+    const postAd = document.querySelector('#post-ad');
+    const postAdList = document.querySelector('#post-ad-list');
+    postAd.style.display = 'flex';
+    postAdList.style.display = 'none';
+};

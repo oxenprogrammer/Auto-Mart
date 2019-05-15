@@ -199,6 +199,10 @@ body {
     border-color: #008081 !important;
     transition: all 0.4s ease 0s;
 }
+
+#post-ad {
+    display: none;
+}
   
 @media screen and (max-width: 601px) {
     #main .car-ad-list tr:nth-child(2) {

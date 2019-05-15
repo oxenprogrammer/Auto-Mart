@@ -35,7 +35,7 @@
                 <div class="myname">emanuel okello</div>
             </div>
             <div class="task">
-                <a href="#">Post Car Ad</a>
+                <a href="#" onclick="togglePostAd()">Post Car Ad</a>
                 <a href="#">View Purchase Order</a>
                 <a href="#">Edit Profile</a>
                 <a href="#">Log Out</a>
@@ -43,7 +43,7 @@
         </aside>
         <main id="main">
             <h1>Content Goes Here</h1>
-            <table class="car-ad-list">
+            <table class="car-ad-list" id="post-ad-list">
                 <tbody>
                     <tr>
                         <th>Number</th>
@@ -88,7 +88,7 @@
                 </tbody>
             </table>
 
-            <div class="form-box">
+            <div class="form-box" id="post-ad">
                 <form>
                     <h3>Post Car Advert</h3>
                     <div class="form-group">

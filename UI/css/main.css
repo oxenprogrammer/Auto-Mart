@@ -59,6 +59,7 @@ html body {
     color: #000000;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     background: #ffffff;
+    transition: 0.5s ease-in-out;
 }
 
 .form-box h3 {
