@@ -217,10 +217,22 @@ body {
     min-width: 60px;
     position: relative;
     transition: color 0.1s ease;
-  }
-  .modal-footer .btn:hover {
-    background: rgb(42, 117, 107);
-  }
+}
+.modal-footer .btn:hover {
+background: rgb(42, 117, 107);
+}
+
+.modal-header .btn-close {
+    color: #aaa;
+    font-size: 30px;
+    text-decoration: none;
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+.modal-header .btn-close:hover {
+color: #919191;
+}
   
 @media screen and (max-width: 601px) {
     #main .car-ad-list tr:nth-child(2) {
