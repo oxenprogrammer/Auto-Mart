@@ -28,3 +28,11 @@ const togglePostAd = () => {
     postAd.style.display = 'flex';
     postAdList.style.display = 'none';
 };
+
+const togglePostAdList = () => {
+    const postAd = document.querySelector('#post-ad');
+    const postAdList = document.querySelector('#post-ad-list');
+    postAd.style.display = 'none';
+    postAdList.style.display = 'flex';
+    postAdList.style.marginLeft = '250px';
+};
