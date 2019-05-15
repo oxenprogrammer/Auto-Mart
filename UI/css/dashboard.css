@@ -219,7 +219,8 @@ body {
     transition: color 0.1s ease;
 }
 .modal-footer .btn:hover {
-background: rgb(42, 117, 107);
+    background: rgb(42, 117, 107);
+    cursor: pointer;
 }
 
 .modal-header .btn-close {
