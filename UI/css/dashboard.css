@@ -180,6 +180,16 @@ body {
 #main .car-ad-list tr {
     border-color: #bfbfbf;
 }
+
+#main .car-ad-list tr td button {
+    color: #494949 !important;
+    text-transform: uppercase;
+    background: #ffffff;
+    padding: 2px 8px;
+    border: 1px solid #494949 !important;
+    border-radius: 2px;
+    display: inline-block;
+}
   
 @media screen and (max-width: 601px) {
     #main .car-ad-list tr:nth-child(2) {
