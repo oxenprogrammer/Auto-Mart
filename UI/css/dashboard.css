@@ -30,6 +30,7 @@ body {
     overflow: hidden;
     height: 63px;
     width: 100%;
+    transition: 0.5s ease-out;
 }
 
 .navbar a {
