@@ -182,7 +182,7 @@ body {
     border-color: #bfbfbf;
 }
 
-#main .car-ad-list tr td button {
+#main .car-ad-list tr td a {
     color: #494949 !important;
     text-transform: uppercase;
     background: #ffffff;
@@ -190,9 +190,10 @@ body {
     border: 1px solid #494949 !important;
     border-radius: 2px;
     display: inline-block;
+    text-decoration: none;
 }
 
-#main .car-ad-list tr td button:hover {
+#main .car-ad-list tr td a:hover {
     color: #ffffff !important;
     background: #008081;
     cursor: pointer;
