@@ -65,7 +65,7 @@ html body {
     display: block;
     text-align: center;
     padding: 13px 20px 12px;
-    // background: #47A99C;
+    /* background: #47A99C; */
     width: 280px;
     height: 55px;
     border-radius: 3px;
@@ -81,6 +81,29 @@ html body {
     margin: 20px 0 5px 0;
 }
 
+.upload {
+    display:flex;
+    align-items: center;
+    margin: 10px 0;
+} 
+.upload:hover {
+    cursor: pointer;
+}
+.upload:focus {
+    cursor: pointer;
+}
+
+.upload img {
+    position: relative;
+    display: inline-block;
+}
+
+.upload .upload-text {
+    position: absolute;
+    /* left: 120px; */
+    margin-left: 70px;
+}
+
 input, select {
     width: 100%;
     padding: 10px 15px;
@@ -90,6 +113,10 @@ input, select {
     outline: none;
     color: #717171;
     border-radius: 3px;
+}
+
+input[type=file] {
+    display: none;
 }
 
 select option {

@@ -88,6 +88,38 @@
                 </tbody>
             </table>
 
+            <div class="form-box">
+                <form>
+                    <h3>Post Car Advert</h3>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="carname" id="carname" placeholder="enter the name of the car" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="make" id="make" placeholder="enter the car make" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="model" id="model" placeholder="enter the car model" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="number" name="price" id="price" placeholder="enter the car price" required>
+                        </div>
+                    </div>
+                    <div class="upload" onclick="document.getElementById('car-image').click();">
+                        <img src="./img/yellow-car.png" width="20%" height="auto" alt="">
+                        <div class="upload-text">Upload Car Image</div>
+                    </div>
+                    <input type="file" name="car-image" id="car-image">
+                    <button class="signup-login" type="submit">Advertise</button>
+                </form>
+               </div>
+
         </main>
     </div>
     <script src="./js/dashboard.js"></script>
