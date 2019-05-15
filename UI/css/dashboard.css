@@ -114,6 +114,17 @@ body {
     width: 100%;
 }
 
+#main h1 {
+    text-align: center;
+}
+
+#main .car-ad-list{
+    margin: auto;
+    min-width: 300px;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
 
 @media(max-width: 568px) {
     .navbar ul {
