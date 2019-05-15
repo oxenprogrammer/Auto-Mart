@@ -160,7 +160,7 @@ select option {
 */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .form-box {
+    .form-box, .post-car-advert{
         width: 100%
     }
 }
@@ -171,7 +171,7 @@ select option {
 */
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    .form-box {
+    .form-box, .post-car-advert {
         width: 100%
     }
 }
@@ -182,7 +182,7 @@ select option {
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
-    .form-box {
+    .form-box, .post-car-advert {
         width: 100%
     }
 }
@@ -192,7 +192,7 @@ select option {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-    .form-box {
+    .form-box, .post-car-advert {
         width: 100%
     }
 }

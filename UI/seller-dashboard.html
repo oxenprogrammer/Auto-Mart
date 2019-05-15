@@ -36,7 +36,7 @@
             </div>
             <div class="task">
                 <a href="#" onclick="togglePostAd()">Post Car Ad</a>
-                <a href="#">View Purchase Order</a>
+                <a href="#" onclick="togglePurchaseOrderList()">Purchase Order List</a>
                 <a href="#">Edit Profile</a>
                 <a href="signup.html">Log Out</a>
             </div>
@@ -167,6 +167,50 @@
                 </div>
             </div>
             <!--/Model Car Details-->
+            <table class="car-ad-list" id="purchase-order-list">
+                    <tbody>
+                        <tr>
+                            <th>Number</th>
+                            <th>Car Name</th>
+                            <th>Date Posted</th>
+                            <th>My Price</th>
+                            <th>Buyer's Price</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#1</td>
+                            <td data-th="Car Name">Pajero Land Cruiser</td>
+                            <td data-th="Date Posted">15th May 2019</td>
+                            <td data-th="My Price">36M UGX</td>
+                            <td data-th="Buyer's Price">34M UGX</td>
+                            <td data-th="Status"><a class="sold1" onclick="sold()"  class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#2</td>
+                            <td data-th="Car Name">Toyota Corolla</td>
+                            <td data-th="Date Posted">14th May 2019</td>
+                            <td data-th="My Price">36M UGX</td>
+                            <td data-th="Buyer's Price">34M UGX</td>
+                            <td data-th="Status"><a class="sold2" onclick="sold()" class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#3</td>
+                            <td data-th="Car Name">Macerdez Benz</td>
+                            <td data-th="Date Posted">13th May 2019</td>
+                            <td data-th="My Price">136M UGX</td>
+                            <td data-th="Buyer's Price">134M UGX</td>
+                            <td data-th="Status"><a class="sold3" onclick="sold()" class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#4</td>
+                            <td data-th="Car Name">Tata Lorry</td>
+                            <td data-th="Date Posted">12th May 2019</td>
+                            <td data-th="My Price">36M UGX</td>
+                            <td data-th="Buyer's Price">34M UGX</td>
+                            <td data-th="Status"><a class="sold4" onclick="sold()" class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                    </tbody>
+                </table>
         </main>
     </div>
     <script src="./js/dashboard.js"></script>

@@ -207,6 +207,10 @@ body {
     display: none;
 }
 
+#purchase-order-list {
+    display: none;
+}
+
 .modal-footer .btn {
     background: #47A99C;
     border-radius: 3px;
