@@ -126,7 +126,7 @@ select option {
 }
 
 
-.signup-login {
+.signup-login, #login a {
     background: #47A99C;
     padding: 13px 20px 12px;
     letter-spacing: 1px;
@@ -147,9 +147,10 @@ select option {
     width: 100%;
     user-select: none;
     font-family: inherit;
+    text-decoration: none;
 }
 
-.signup-login:focus {
+.signup-login:focus,  #login a {
     background: rgb(42, 117, 107);
 }
 
