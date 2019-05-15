@@ -125,6 +125,22 @@ body {
     border-collapse: collapse;
 }
 
+#main .car-ad-list tr:first-child {
+    border-top: none;
+    background: #008081;
+    color: #ffffff;
+}
+
+#main .car-ad-list tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: #f5f9fc;
+  }
+
+#main .car-ad-list tr:nth-child(odd):not(:first-child) {
+    background-color: #ebf3f9;
+}
+
 
 @media(max-width: 568px) {
     .navbar ul {
