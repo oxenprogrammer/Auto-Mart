@@ -36,3 +36,14 @@ const togglePostAdList = () => {
     postAdList.style.display = 'flex';
     postAdList.style.marginLeft = '250px';
 };
+
+const sold = () => {
+    const soldStatus = document.querySelector('#sold-status');
+    const soldLink = document.querySelector('#sold');
+    // const content = document.createTextNode('Sold');
+    soldStatus.innerHTML = 'Sold';
+    soldLink.innerHTML = 'Sold';
+    soldStatus.style.color = 'red';
+    soldLink.style.background = 'green';
+
+}
