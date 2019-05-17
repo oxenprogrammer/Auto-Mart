@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/dashboard.css">
-    <title>Auto-Mart | Buyer Dashboard</title>
+    <title>Auto-Mart | Admin Dashboard</title>
 </head>
 <body>
     <div class="container">
@@ -36,7 +36,7 @@
             </div>
             <div class="task">
                 <!-- <a href="#" onclick="togglePostAd()">Post Car Ad</a> -->
-                <a href="#" onclick="toggleMyPurchaseOrder()">My Purchase Order</a>
+                <!-- <a href="#" onclick="toggleMyPurchaseOrder()">My Purchase Order</a> -->
                 <a href="#">Edit Profile</a>
                 <a href="signup.html">Log Out</a>
             </div>
@@ -44,9 +44,9 @@
         <main id="main">
             <!-- post ad list -->
             <table class="car-ad-list" id="post-ad-list-buyer">
-                <h1 id="header-ad">Recent Car Ads by Sellers</h1>
+                <h1 id="header-ad">Sold and Unsold Car Adverts</h1>
                 <div id="search" class="search">
-                    <input type="text" name="" placeholder="search by name, make, model or manufacturer" id="">
+                    <input type="text" name="" placeholder="enter name, make, model or manufacturer, sold or unsold" id="">
                     <input type="number" name="" placeholder="min price" id="">
                     <input type="number" name="" placeholder="max price" id="">
                     <input type="submit" value="search">
@@ -96,59 +96,6 @@
             </table>
             <!-- /post ad list -->
 
-            <table class="car-ad-list" id="my-purchase-list">
-                    <h1 class="header-purchase-order">My Purchase Order List</h1>
-                    <!-- <div class="search">
-                        <input type="text" name="" placeholder="search by name, make, model or manufacturer" id="">
-                        <input type="number" name="" placeholder="min price" id="">
-                        <input type="number" name="" placeholder="max price" id="">
-                        <input type="submit" value="search">
-                    </div> -->
-                    <tbody>
-                        <tr>
-                            <th>Number</th>
-                            <th>Car Name</th>
-                            <th>Date Posted</th>
-                            <th>Price</th>
-                            <th>Seller</th>
-                            <th>Purchase Order Date</th>
-                            <th>View Details</th>
-                        </tr>
-                        <tr>
-                            <td data-th="Number">#1</td>
-                            <td data-th="Car Name">Pajero Land Cruiser</td>
-                            <td data-th="Date Posted">15th May 2019</td>
-                            <td data-th="Price">36M UGX</td>
-                            <td data-th="Seller">Omara Mourice</td>
-                            <td data-th="Purchase Order Date">17th May 2019</td>
-                            <td data-th="View Details"><a href="#car-order-details" class="details-btn">DETAILS</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            <!-- Modal Price Edit -->
-            <div class="modal" id="modal-edit-price" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-header">
-                    <h2>Update Car Price?</h2>
-                    <a href="#" class="btn-close" aria-hidden="true">×</a>
-                </div>
-                <div class="modal-body">
-                    <form class="">
-                        <div class="form-group">
-                            <div class="form-control">
-                                <input type="number" name="price" id="price" placeholder="enter new price" required>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn">Cancel</a>
-                    <a href="#" class="btn">Update Price</a>
-                </div>
-                </div>
-            </div>
-            <!-- /Modal Price Edit -->
             <!-- Model Car Details-->
             <div class="modal" id="modal-car-details" aria-hidden="true">
                 <div class="modal-dialog">
