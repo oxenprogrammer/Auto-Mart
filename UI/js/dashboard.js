@@ -41,6 +41,24 @@ const togglePostAdList = () => {
     postAdList.style.marginLeft = '250px';
 };
 
+const togglePostAdListBuyer = () => {
+    const myPurchaseOrderList = document.querySelector('#my-purchase-list');
+    const headerPurchaseOrder = document.querySelector('.header-purchase-order');
+    const headerAd = document.querySelector('#header-ad');
+    const search = document.querySelector('#search');
+    // const postAd = document.querySelector('#post-ad');
+    const postAdList = document.querySelector('#post-ad-list-buyer');
+    myPurchaseOrderList.style.display = 'none';
+    headerPurchaseOrder.style.display = 'none';
+    // postAd.style.display = 'none';
+    headerAd.style.display = 'block';
+    headerAd.style.left = '250px';
+    search.style.display = 'flex';
+    search.style.left = '300px';
+    postAdList.style.display = 'flex';
+    postAdList.style.marginLeft = '250px';
+};
+
 const togglePurchaseOrderList = () => {
     const purchaseOrderList = document.querySelector('#purchase-order-list');
     const postAd = document.querySelector('#post-ad');

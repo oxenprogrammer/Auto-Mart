@@ -7,7 +7,7 @@
 
 body {
     background: #f4f4f4;
-    overflow-x: auto;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
 }
@@ -39,6 +39,7 @@ body {
     position: sticky;
     top: 0;
     transition: 0.5s ease-out;
+    z-index: 1;
 }
 
 .navbar a {
@@ -65,7 +66,7 @@ body {
     height: 100%;
     width: 0%;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0px;
     left: 0;
     background: #47A99C;
