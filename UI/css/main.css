@@ -154,6 +154,26 @@ select option {
     background: rgb(42, 117, 107);
 }
 
+.footer {
+    background: #47A99C;
+    overflow: hidden;
+    height: 63px;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+}
+
+.footer a {
+    overflow-x: auto;
+    display: block;
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
 /*
 ##Device = Tablets, Ipads (portrait)
 ##Screen = B/w 768px to 1024px
