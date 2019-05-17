@@ -210,6 +210,12 @@ body {
 #purchase-order-list {
     display: none;
 }
+#my-purchase-list {
+    display: none;
+}
+.header-purchase-order {
+    display: none;
+}
 .modal-footer {
     display: flex;
     flex-direction: column;
