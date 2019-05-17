@@ -44,7 +44,7 @@ html body {
     margin-left: 20px;
 }
 
-.form-box {
+.form-box, .post-car-advert {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,13 +59,14 @@ html body {
     color: #000000;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     background: #ffffff;
+    transition: 0.5s ease-in-out;
 }
 
-.form-box h3 {
+.form-box h3, .post-car-advert h3 {
     display: block;
     text-align: center;
     padding: 13px 20px 12px;
-    // background: #47A99C;
+    /* background: #47A99C; */
     width: 280px;
     height: 55px;
     border-radius: 3px;
@@ -77,8 +78,31 @@ html body {
     display: none;
 }
 
-.form-group {
+.form-box .form-group,  .post-car-advert .form-group{
     margin: 20px 0 5px 0;
+}
+
+.upload {
+    display:flex;
+    align-items: center;
+    margin: 10px 0;
+} 
+.upload:hover {
+    cursor: pointer;
+}
+.upload:focus {
+    cursor: pointer;
+}
+
+.upload img {
+    position: relative;
+    display: inline-block;
+}
+
+.upload .upload-text {
+    position: absolute;
+    /* left: 120px; */
+    margin-left: 70px;
 }
 
 input, select {
@@ -92,13 +116,17 @@ input, select {
     border-radius: 3px;
 }
 
+input[type=file] {
+    display: none;
+}
+
 select option {
     background: #47A99C;
     font-size: 20px;
 }
 
 
-.signup-login {
+.signup-login, #login a {
     background: #47A99C;
     padding: 13px 20px 12px;
     letter-spacing: 1px;
@@ -119,9 +147,10 @@ select option {
     width: 100%;
     user-select: none;
     font-family: inherit;
+    text-decoration: none;
 }
 
-.signup-login:focus {
+.signup-login:focus,  #login a {
     background: rgb(42, 117, 107);
 }
 
@@ -131,7 +160,7 @@ select option {
 */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .form-box {
+    .form-box, .post-car-advert{
         width: 100%
     }
 }
@@ -142,7 +171,7 @@ select option {
 */
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    .form-box {
+    .form-box, .post-car-advert {
         width: 100%
     }
 }
@@ -153,7 +182,7 @@ select option {
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
-    .form-box {
+    .form-box, .post-car-advert {
         width: 100%
     }
 }
@@ -163,7 +192,7 @@ select option {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-    .form-box {
+    .form-box, .post-car-advert {
         width: 100%
     }
 }

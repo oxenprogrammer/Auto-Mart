@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <title>Auto-Mart | Seller Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <span class="hamburger">
+                <a href="#" onclick="onSideMenu()">
+                    <!-- &#9776; -->
+                    <svg width="30" height="30">
+                        <path d="M0,5 30,5" stroke="#fff", stroke-width="5"/>
+                        <path d="M0,14 30,14" stroke="#fff", stroke-width="5"/>
+                        <path d="M0,23 30,23" stroke="#fff", stroke-width="5"/>
+                    </svg>
+                </a>
+            </span>
+            <ul class="nav-item">
+                <li class="list-item"><a href="#">Notification</a></li>
+                <li class="list-item"><a href="#" onclick="onSideMenu()">Profile</a></li>
+                <li class="list-item"><a onclick="togglePostAdListBuyer()" id="dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+        <aside id="side-menu" class="side-nav">
+            <div class="btn-close">
+                <a href="#" onclick="offSideMenu()">&times;</a>
+            </div>
+            <div class="profile">
+                <img src="./img/img_avatar.png" alt="Avatar" class="avatar">
+                <div class="myname">emanuel okello</div>
+            </div>
+            <div class="task">
+                <!-- <a href="#" onclick="togglePostAd()">Post Car Ad</a> -->
+                <a href="#" onclick="toggleMyPurchaseOrder()">My Purchase Order</a>
+                <a href="#">Edit Profile</a>
+                <a href="signup.html">Log Out</a>
+            </div>
+        </aside>
+        <main id="main">
+            <!-- post ad list -->
+            <table class="car-ad-list" id="post-ad-list-buyer">
+                <h1 id="header-ad">Recent Car Ads by Sellers</h1>
+                <div id="search" class="search">
+                    <input type="text" name="" placeholder="search by name, make, model or manufacturer" id="">
+                    <input type="number" name="" placeholder="min price" id="">
+                    <input type="number" name="" placeholder="max price" id="">
+                    <input type="submit" value="search">
+                </div>
+                <tbody>
+                    <tr>
+                        <th>Number</th>
+                        <th>Car Name</th>
+                        <th>Date Posted</th>
+                        <th>Price</th>
+                        <th>Seller</th>
+                        <th>View Details</th>
+                    </tr>
+                    <tr>
+                        <td data-th="Number">#1</td>
+                        <td data-th="Car Name">Pajero Land Cruiser</td>
+                        <td data-th="Date Posted">15th May 2019</td>
+                        <td data-th="Price">36M UGX</td>
+                        <td data-th="Seller">Omara Mourice</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
+                    </tr>
+                    <tr>
+                        <td data-th="Number">#2</td>
+                        <td data-th="Car Name">Toyota Corolla</td>
+                        <td data-th="Date Posted">14th May 2019</td>
+                        <td data-th="Price">16M UGX</td>
+                        <td data-th="Seller">Francis Wayungi</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
+                    </tr>
+                    <tr>
+                        <td data-th="Number">#3</td>
+                        <td data-th="Car Name">Macerdez Benz</td>
+                        <td data-th="Date Posted">13th May 2019</td>
+                        <td data-th="Price">136M UGX</td>
+                        <td data-th="Seller">Kimbogwe Hassan</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
+                    </tr>
+                    <tr>
+                        <td data-th="Number">#4</td>
+                        <td data-th="Car Name">Tata Lorry</td>
+                        <td data-th="Date Posted">12th May 2019</td>
+                        <td data-th="Price">76M UGX</td>
+                        <td data-th="Seller">Joan Mich</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /post ad list -->
+
+            <table class="car-ad-list" id="my-purchase-list">
+                    <h1 class="header-purchase-order">My Purchase Order List</h1>
+                    <!-- <div class="search">
+                        <input type="text" name="" placeholder="search by name, make, model or manufacturer" id="">
+                        <input type="number" name="" placeholder="min price" id="">
+                        <input type="number" name="" placeholder="max price" id="">
+                        <input type="submit" value="search">
+                    </div> -->
+                    <tbody>
+                        <tr>
+                            <th>Number</th>
+                            <th>Car Name</th>
+                            <th>Date Posted</th>
+                            <th>Price</th>
+                            <th>Seller</th>
+                            <th>Purchase Order Date</th>
+                            <th>View Details</th>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#1</td>
+                            <td data-th="Car Name">Pajero Land Cruiser</td>
+                            <td data-th="Date Posted">15th May 2019</td>
+                            <td data-th="Price">36M UGX</td>
+                            <td data-th="Seller">Omara Mourice</td>
+                            <td data-th="Purchase Order Date">17th May 2019</td>
+                            <td data-th="View Details"><a href="#car-order-details" class="details-btn">DETAILS</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            <!-- Modal Price Edit -->
+            <div class="modal" id="modal-edit-price" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-header">
+                    <h2>Update Car Price?</h2>
+                    <a href="#" class="btn-close" aria-hidden="true">×</a>
+                </div>
+                <div class="modal-body">
+                    <form class="">
+                        <div class="form-group">
+                            <div class="form-control">
+                                <input type="number" name="price" id="price" placeholder="enter new price" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn">Cancel</a>
+                    <a href="#" class="btn">Update Price</a>
+                </div>
+                </div>
+            </div>
+            <!-- /Modal Price Edit -->
+            <!-- Model Car Details-->
+            <div class="modal" id="modal-car-details" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-header">
+                    <h2>Car Title</h2>
+                    <a href="#" class="btn-close" aria-hidden="true">×</a>
+                </div>
+                <div class="modal-body">
+                    <img src="./img/blue-car.png" width="40%" height="auto" alt="blue car">
+                    <div class="car-details">
+                        <div class="car">Saloon Rovers</div>
+                        <div class="car">American LS Make</div>
+                        <div class="car">2017 Model</div>
+                        <div class="car">56M UGX</div>
+                        <div class="car">15th May 2019</div>
+                        <div id="sold-status" class="car">Unsold</div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a id="sold" onclick="sold()" class="btn">Mark as Sold</a>
+                </div>
+                </div>
+            </div>
+            <!--/Model Car Details-->
+            <!-- Car Ad Details-->
+            <div class="modal" id="car-ad-details" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-header">
+                    <h2>Car Title</h2>
+                    <a href="#" class="btn-close" aria-hidden="true">×</a>
+                </div>
+                <div class="modal-body">
+                    <img src="./img/red-car.png" width="60%" height="auto" alt="blue car">
+                    <div class="car-details">
+                        <div class="car"></div>
+                        <div class="car">European Make</div>
+                        <div class="car">2001 Model</div>
+                        <div class="car">56M UGX</div>
+                        <div class="car">By Omara Mourice</div>
+                        <div class="car">15th May 2019</div>
+                        <div  class="fraud">Unflagged as Fraudulent</div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#purchase-order" id="purchase-order-link" class="btn">Make Purchase Order</a>
+                    <a id="fraud" class="btn" onclick="markFraud()">Flag as Fraudulent</a>
+                </div>
+                </div>
+            </div>
+            <!--/Car Ad Details-->
+            <!-- make purchase order -->
+            <div class="modal" id="purchase-order" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-header">
+                        <h2>Car Title</h2>
+                        <a href="#" class="btn-close" aria-hidden="true">×</a>
+                    </div>
+                    <div class="modal-body">
+                        <img src="./img/red-car.png" width="60%" height="auto" alt="blue car">
+                        <div class="car-details">
+                            <div class="car">European Make</div>
+                            <div class="car">Seller's Price: 36M UGX</div>
+                            <div class="form-group">
+                                <input type="number" name="" placeholder="enter your buying price" id="">
+                            </div>
+                            
+                        </div>
+    
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" id="make-order-link" class="btn">Submit Purchase Order</a>
+                        <a href="#" class="btn">Cancel</a>
+                    </div>
+                    </div>
+                </div>
+            <!--/Car Ad Details-->
+            <!-- purchase order details -->
+            <div class="modal" id="car-order-details" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-header">
+                        <h2>Car Title</h2>
+                        <a href="#" class="btn-close" aria-hidden="true">×</a>
+                    </div>
+                    <div class="modal-body">
+                        <img src="./img/red-car.png" width="60%" height="auto" alt="blue car">
+                        <div class="car-details">
+                            <div class="car"></div>
+                            <div class="car">European Make</div>
+                            <div class="car">2001 Model</div>
+                            <div class="car">Seller Price: 56M UGX</div>
+                            <div class="car">By Omara Mourice</div>
+                            <div class="car">Posted: 15th May 2019</div>
+                            <div class="car">Ordered: 17th May 2019</div>
+                            <div class="car">My Price: 46M UGX</div>
+                        </div>
+    
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#modal-edit-price" id="order-price-link" class="btn">Update Price</a>
+                    </div>
+                    </div>
+            </div>
+            <!-- /purchase order details -->
+            <table class="car-ad-list" id="purchase-order-list">
+                    <tbody>
+                        <tr>
+                            <th>Number</th>
+                            <th>Car Name</th>
+                            <th>Date Posted</th>
+                            <th>My Price</th>
+                            <th>Buyer's Price</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#1</td>
+                            <td data-th="Car Name">Pajero Land Cruiser</td>
+                            <td data-th="Date Posted">15th May 2019</td>
+                            <td data-th="My Price">36M UGX</td>
+                            <td data-th="Buyer's Price">34M UGX</td>
+                            <td data-th="Status"><a class="sold1" onclick="sold()"  class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#2</td>
+                            <td data-th="Car Name">Toyota Corolla</td>
+                            <td data-th="Date Posted">14th May 2019</td>
+                            <td data-th="My Price">36M UGX</td>
+                            <td data-th="Buyer's Price">34M UGX</td>
+                            <td data-th="Status"><a class="sold2" onclick="sold()" class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#3</td>
+                            <td data-th="Car Name">Macerdez Benz</td>
+                            <td data-th="Date Posted">13th May 2019</td>
+                            <td data-th="My Price">136M UGX</td>
+                            <td data-th="Buyer's Price">134M UGX</td>
+                            <td data-th="Status"><a class="sold3" onclick="sold()" class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                        <tr>
+                            <td data-th="Number">#4</td>
+                            <td data-th="Car Name">Tata Lorry</td>
+                            <td data-th="Date Posted">12th May 2019</td>
+                            <td data-th="My Price">36M UGX</td>
+                            <td data-th="Buyer's Price">34M UGX</td>
+                            <td data-th="Status"><a class="sold4" onclick="sold()" class="details-btn">Mark as Sold</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </main>
+    </div>
+    <script src="./js/dashboard.js"></script>
+</body>
+</html>
