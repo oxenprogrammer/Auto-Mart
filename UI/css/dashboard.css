@@ -241,6 +241,13 @@ body {
     cursor: pointer;
 }
 
+.modal-footer #delete-ad {
+    background: orangered;
+}
+.modal-footer #delete-ad:hover {
+    background: red;
+}
+
 .modal-header .btn-close {
     color: #aaa;
     font-size: 30px;
