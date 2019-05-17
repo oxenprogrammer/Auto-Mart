@@ -210,8 +210,13 @@ body {
 #purchase-order-list {
     display: none;
 }
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+}
 
 .modal-footer .btn {
+    margin-bottom: 5px;
     background: #47A99C;
     border-radius: 3px;
     color: #fff;

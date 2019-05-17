@@ -61,11 +61,19 @@ const sold = () => {
     // const content = document.createTextNode('Sold');
     soldStatus.innerHTML = 'Sold';
     soldLink.innerHTML = 'Sold';
-    soldStatus.style.color = 'red';
+    soldStatus.style.color = 'green';
     soldLink.style.background = 'green';
     soldout1.style.background = 'green';
     soldout1.innerHTML = 'SOLD OUT';
     soldout1.style.color = 'white';
- 
+};
 
-}
+const markFraud = () => {
+    const fraud = document.querySelector('.fraud');
+    fraud.innerHTML = 'Fraudulent';
+    fraud.style.color = 'red';
+    const fraudLink = document.querySelector('#fraud');
+    fraudLink.style.background = 'red';
+    fraudLink.innerHTML = 'Flagged as Fraudulent';
+    fraudLink.style.color = 'white';
+};

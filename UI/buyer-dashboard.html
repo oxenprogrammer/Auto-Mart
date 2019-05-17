@@ -42,8 +42,8 @@
             </div>
         </aside>
         <main id="main">
-            <h1>Content Goes Here</h1>
             <table class="car-ad-list" id="post-ad-list">
+                <h1>Recent Car Ads by Sellers</h1>
                 <div class="search">
                     <input type="text" name="" placeholder="search by name, make, model or manufacturer" id="">
                     <input type="number" name="" placeholder="min price" id="">
@@ -56,7 +56,7 @@
                         <th>Car Name</th>
                         <th>Date Posted</th>
                         <th>Price</th>
-                        <th>Price Edit</th>
+                        <th>Seller</th>
                         <th>View Details</th>
                     </tr>
                     <tr>
@@ -64,32 +64,32 @@
                         <td data-th="Car Name">Pajero Land Cruiser</td>
                         <td data-th="Date Posted">15th May 2019</td>
                         <td data-th="Price">36M UGX</td>
-                        <td data-th="Price Edit"><a href="#modal-edit-price" class="edit-btn">EDIT</a></td>
-                        <td data-th="View Details"><a href="#modal-car-details" class="details-btn">DETAILS</a></td>
+                        <td data-th="Seller">Omara Mourice</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
                     </tr>
                     <tr>
                         <td data-th="Number">#2</td>
                         <td data-th="Car Name">Toyota Corolla</td>
                         <td data-th="Date Posted">14th May 2019</td>
                         <td data-th="Price">16M UGX</td>
-                        <td data-th="Price Edit"><a href="#modal-edit-price" class="edit-btn">EDIT</a></td>
-                        <td data-th="View Details"><a href="#modal-car-details" class="details-btn">DETAILS</a></td>
+                        <td data-th="Seller">Francis Wayungi</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
                     </tr>
                     <tr>
                         <td data-th="Number">#3</td>
                         <td data-th="Car Name">Macerdez Benz</td>
                         <td data-th="Date Posted">13th May 2019</td>
                         <td data-th="Price">136M UGX</td>
-                        <td data-th="Price Edit"><a href="#modal-edit-price" class="edit-btn">EDIT</a></td>
-                        <td data-th="View Details"><a href="#modal-car-details" class="details-btn">DETAILS</a></td>
+                        <td data-th="Seller">Kimbogwe Hassan</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
                     </tr>
                     <tr>
                         <td data-th="Number">#4</td>
                         <td data-th="Car Name">Tata Lorry</td>
                         <td data-th="Date Posted">12th May 2019</td>
                         <td data-th="Price">76M UGX</td>
-                        <td data-th="Price Edit"><a href="#modal-edit-price" class="edit-btn">EDIT</a></td>
-                        <td data-th="View Details"><a href="#modal-car-details" class="details-btn">DETAILS</a></td>
+                        <td data-th="Seller">Joan Mich</td>
+                        <td data-th="View Details"><a href="#car-ad-details" class="details-btn">DETAILS</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -173,6 +173,33 @@
                 </div>
             </div>
             <!--/Model Car Details-->
+            <!-- Car Ad Details-->
+            <div class="modal" id="car-ad-details" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-header">
+                        <h2>Car Title</h2>
+                        <a href="#" class="btn-close" aria-hidden="true">×</a>
+                    </div>
+                    <div class="modal-body">
+                        <img src="./img/red-car.png" width="60%" height="auto" alt="blue car">
+                        <div class="car-details">
+                            <div class="car"></div>
+                            <div class="car">European Make</div>
+                            <div class="car">2001 Model</div>
+                            <div class="car">56M UGX</div>
+                            <div class="car">By Omara Mourice</div>
+                            <div class="car">15th May 2019</div>
+                            <div  class="fraud">Unflagged as Fraudulent</div>
+                        </div>
+    
+                    </div>
+                    <div class="modal-footer">
+                        <a id="purchase-order-link" class="btn">Make Purchase Order</a>
+                        <a id="fraud" class="btn" onclick="markFraud()">Flag as Fraudulent</a>
+                    </div>
+                    </div>
+                </div>
+                <!--/Car Ad Details-->
             <table class="car-ad-list" id="purchase-order-list">
                     <tbody>
                         <tr>
