@@ -298,6 +298,33 @@ color: #008081;
 border-top: #eee solid 1px;
 text-align: right;
 }
+
+#main .search {
+    display: flex;
+    width: 52%;
+    position: relative;
+    left: 360px;
+    margin-bottom: 20px;
+    border: 1px solid #008081;
+}
+
+.search input {
+    flex-direction: column;
+}
+
+.search input[type=text] {
+    flex-basis: 50%
+}
+
+.search input[type=number] {
+    flex-basis: 20%
+}
+
+.search input[type=submit] {
+    flex-basis: 10%;
+    color: #ffffff;
+    background: #47A99C;
+}
   
 @media screen and (max-width: 601px) {
     #main .car-ad-list tr:nth-child(2) {
