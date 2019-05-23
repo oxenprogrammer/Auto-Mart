@@ -1,0 +1,25 @@
+{
+  "name": "auto-mart",
+  "version": "1.0.0",
+  "description": "\"Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxenprogrammer/Auto-Mart.git"
+  },
+  "keywords": [
+    "buy",
+    "sell",
+    "auto-motives",
+    "cars"
+  ],
+  "author": "oxenprogrammer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oxenprogrammer/Auto-Mart/issues"
+  },
+  "homepage": "https://github.com/oxenprogrammer/Auto-Mart#readme"
+}
