@@ -50,3 +50,10 @@ const flag = [
         date_modified: '05-28-2019'
     }
 ];
+
+module.export = {
+    user: user,
+    car: car,
+    order: order,
+    flag: flag
+};
