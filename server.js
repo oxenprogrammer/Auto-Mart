@@ -5,6 +5,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import model from './db/db';
+import bcryptjs  from 'bcryptjs';
 
 // Set up the express app
 const app = express();
@@ -23,7 +24,7 @@ app.get('/api/v1/user', (req, res) => {
 });
 
 // register user
-app.post('/api/v1/auth/signup', (req, res) => {
+app.post('/api/v1/auth/signup', async (req, res) => {
   let emailExist = '';
   model.user.map((oneUser) => {
     emailExist = oneUser.email;
@@ -51,6 +52,9 @@ app.post('/api/v1/auth/signup', (req, res) => {
     last_userId = model.user[model.user.length - 1].id;
   }
 
+  const salt = await bcryptjs.genSalt(10);
+  req.body.password = await bcryptjs.hash(req.body.password, salt);
+
   const newUser = {
     id: last_userId + 1,
     email: req.body.email,
@@ -72,7 +76,8 @@ app.post('/api/v1/auth/signup', (req, res) => {
       first_name: newUser.first_name,
       last_name: newUser.last_name,
       email: newUser.email,
-      is_admin: newUser.is_admin  
+      is_admin: newUser.is_admin,
+      password: newUser.password
     }
   });
 });
