@@ -51,9 +51,9 @@ const flag = [
     }
 ];
 
-module.export = {
-    user: user,
-    car: car,
-    order: order,
-    flag: flag
+export default {
+    user,
+    car,
+    order,
+    flag
 };

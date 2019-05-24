@@ -3,7 +3,7 @@
 /* jshint node: true */
 
 import express from 'express';
-import {user, car, order, flag} from './db/db';
+import model from './db/db';
 
 // Set up the express app
 const app = express();
@@ -13,7 +13,7 @@ app.get('/api/v1/user', (req, res) => {
   res.status(200).send({
     success: 'true',
     message: 'successfully retrieved users',
-    users: user
+    users: model.user
   });
 });
 
@@ -22,7 +22,7 @@ app.get('/api/v1/car', (req, res) => {
     res.status(200).send({
         success: 'true',
         message: 'successfully retrieved cars',
-        cars: car
+        cars: model.car
     });
 });
 
@@ -31,7 +31,7 @@ app.get('/api/v1/order', (req, res) => {
     res.status(200).send({
       success: 'true',
       message: 'successfully retrieved orders',
-      orders: order
+      orders: model.order
     });
 });
 
@@ -40,7 +40,7 @@ app.get('/api/v1/flag', (req, res) => {
     res.status(200).send({
       success: 'true',
       message: 'successfully retrieved flags',
-      flags: flag
+      flags: model.flag
     });
 });
 
