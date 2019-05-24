@@ -2,6 +2,8 @@
 /* jshint -W097 */
 /* jshint node: true */
 
+import {jsonwebtoken as jwt} from 'jsonwebtoken';
+
 const user = [
     {
        id: 1,

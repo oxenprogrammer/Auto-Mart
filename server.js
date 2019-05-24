@@ -6,6 +6,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import model from './db/db';
 import bcryptjs  from 'bcryptjs';
+import jsonwebtoken  from 'jsonwebtoken';
 
 // Set up the express app
 const app = express();
@@ -68,10 +69,12 @@ app.post('/api/v1/auth/signup', async (req, res) => {
 
   model.user.push(newUser);
 
-  return res.status(201).send({
+  const token = jsonwebtoken.sign({id: newUser.id, is_admin: newUser.is_admin, user_class: newUser.user_class}, 'supertopsecret', {expiresIn: '24h'});
+
+  return res.header('x-auth-token', token).status(201).send({
     status: 201,
     data: {
-      token: '',
+      token: token,
       id: newUser.id,
       first_name: newUser.first_name,
       last_name: newUser.last_name,
