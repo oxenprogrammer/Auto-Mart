@@ -21,6 +21,7 @@ const car = [
     owner: 1,
     created_on: '05-22-2019',
     state: 'new',
+    status: 'available',
     price: 5676.55,
     manufacturer: 'toyota',
     model: '1992',

@@ -13,6 +13,56 @@ class Car {
       cars: model.car,
     });
   }
+
+  postCarAd(req, res) {
+    if (
+      !req.body.state ||
+      !req.body.price ||
+      !req.body.manufacturer ||
+      !req.body.model ||
+      !req.body.body_type
+    ) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Something went wrong, Internal Server Error',
+      });
+    }
+
+    let lastCarId = 0;
+    if (model.user.length > 0) {
+      lastCarId = model.car[model.car.length - 1].id;
+    }
+
+
+    const carAd = {
+      id: lastCarId + 1,
+      owner: req.id,
+      created_on: Date.now(),
+      state: req.body.state,
+      status: 'available',
+      price: req.body.price,
+      manufacturer: req.body.manufacturer,
+      model: req.body.model,
+      body_type: req.body.body_type,
+      date_modified: Date.now(),
+    };
+
+    model.car.push(carAd);
+
+    return res.status(201).send({
+      status: 201,
+      data: {
+        id: carAd.id,
+        owner: carAd.owner,
+        created_on: carAd.created_on,
+        manufacturer: carAd.manufacturer,
+        model: carAd.model,
+        price: carAd.price,
+        state: carAd.state,
+        status: carAd.status,
+      },
+    });
+  }
 }
 
 const car = new Car();
