@@ -6,6 +6,7 @@
 import bcryptjs from 'bcryptjs';
 import jsonwebtoken from 'jsonwebtoken';
 import model from '../../db/db';
+import filterValue from '../../middleware/helper';
 
 class User {
   getUsers(req, res) {
@@ -73,6 +74,39 @@ class User {
         email: newUser.email,
         is_admin: newUser.is_admin,
         password: newUser.password,
+      },
+    });
+  }
+
+  async login(req, res) {
+    const userExists = filterValue(model.user, 'email', req.body.email);
+    if (!userExists) {
+      return res.status(400).send({
+        status: 400,
+        error: 'wrong email or password',
+      });
+    }
+
+    const validUserPassword = await bcryptjs.compare(req.body.password, userExists.password);
+
+    if (!validUserPassword) {
+      return res.status(400).send({
+        status: 400,
+        error: 'wrong email or password',
+      });
+    }
+
+    const token = jsonwebtoken.sign({ id: userExists.id, is_admin: userExists.is_admin, user_class: userExists.user_class }, 'supertopsecret', { expiresIn: '24h' });
+    return res.header('x-auth-token', token).status(200).send({
+      status: 200,
+      data: {
+        token,
+        id: userExists.id,
+        first_name: userExists.first_name,
+        last_name: userExists.last_name,
+        email: userExists.email,
+        is_admin: userExists.is_admin,
+        user_class: userExists.user_class,
       },
     });
   }
