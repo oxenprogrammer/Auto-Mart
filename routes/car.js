@@ -4,10 +4,11 @@
 
 import express from 'express';
 import car from '../controllers/car/car';
+import authentication from '../middleware/auth';
 
 const routerCar = express.Router();
 
 // get all cars
-routerCar.get('/api/v1/car', car.getCars);
+routerCar.get('/api/v1/car', authentication, car.getCars);
 
 export default routerCar;
