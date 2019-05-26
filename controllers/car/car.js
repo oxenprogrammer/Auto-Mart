@@ -7,11 +7,36 @@ import model from '../../db/db';
 import filterValue from '../../middleware/helper';
 
 class Car {
+  // getCars(req, res) {
+  //   res.status(200).send({
+  //     status: 200,
+  //     data: model.car,
+  //   });
+  // }
+
   getCars(req, res) {
-    res.status(200).send({
-      status: 200,
-      data: model.car,
-    });
+    const queryUnsold = req.query.status;
+
+    if (queryUnsold) {
+      const cars = filterValue(model.car, 'status', req.query.status);
+      // eslint-disable-next-line no-console
+      console.log('available cars', cars);
+      if (!cars) {
+        res.status(404).send({
+          status: 404,
+          error: 'No Car Advert found',
+        });
+      }
+      res.status(200).send({
+        status: 200,
+        data: cars,
+      });
+    } else {
+      res.status(200).send({
+        status: 200,
+        data: model.car,
+      });
+    }
   }
 
   getCar(req, res) {

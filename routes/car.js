@@ -10,7 +10,7 @@ import seller from '../middleware/seller';
 const routerCar = express.Router();
 
 // get all cars
-routerCar.get('/api/v1/car', authentication, car.getCars);
+routerCar.get('/api/v1/car', [authentication], car.getCars);
 
 // get specific car
 routerCar.get('/api/v1/car/:id', authentication, car.getCar);
