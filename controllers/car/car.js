@@ -9,9 +9,22 @@ import filterValue from '../../middleware/helper';
 class Car {
   getCars(req, res) {
     res.status(200).send({
-      success: 'true',
-      message: 'successfully retrieved cars',
-      cars: model.car,
+      status: 200,
+      data: model.car,
+    });
+  }
+
+  getCar(req, res) {
+    const car = filterValue(model.car, 'id', parseInt(req.params.id, 10));
+    if (!car) {
+      return res.status(404).send({
+        status: 404,
+        error: `Vehicle with ID ${req.params.id} not found`,
+      });
+    }
+
+    return res.status(200).send({
+      car,
     });
   }
 
@@ -83,6 +96,40 @@ class Car {
 
     // mark as sold
     carAd.status = 'sold';
+
+    return res.status(200).send({
+      status: 200,
+      data: {
+        id: carAd.id,
+        owner: carAd.owner,
+        created_on: carAd.created_on,
+        manufacturer: carAd.manufacturer,
+        model: carAd.model,
+        price: carAd.price,
+        state: carAd.state,
+        status: carAd.status,
+      },
+    });
+  }
+
+  updateCarPrice(req, res) {
+    const carAd = filterValue(model.car, 'id', parseInt(req.params.id, 10));
+    // eslint-disable-next-line no-console
+    console.log('search for car', carAd);
+    if (!carAd) {
+      return res.status(404).send({
+        status: 404,
+        error: `Vehicle with ID ${req.params.id} not found`,
+      });
+    } else if (!req.body.price) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Something went wrong, internal server errror',
+      });
+    }
+
+    // update car price
+    carAd.price = req.body.price;
 
     return res.status(200).send({
       status: 200,
