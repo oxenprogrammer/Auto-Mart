@@ -12,6 +12,7 @@ const authenication = (req, res, next) => {
   try {
     const decoded = jsonwebtoken.verify(token, 'supertopsecret');
     req.user = decoded;
+    req.id = decoded.id;
     next();
   } catch (error) {
     return res.status(401).send({ error });
