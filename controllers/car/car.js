@@ -18,7 +18,19 @@ class Car {
     const queryUnsold = req.query.status;
 
     if (queryUnsold) {
+      // const minPrice = filterValue(model.car, 'price', req.query.min_price);
+      // const maxPrice = filterValue(model.car, 'price', req.query.max_price);
       const cars = filterValue(model.car, 'status', req.query.status);
+
+      if (req.query.min_price && req.query.max_price) {
+        // eslint-disable-next-line max-len
+        const filtered = cars.filter(car => car.price >= req.query.min_price && car.price <= req.query.max_price);
+        res.status(200).send({
+          status: 200,
+          data: filtered,
+        });
+      }
+
       // eslint-disable-next-line no-console
       console.log('available cars', cars);
       if (!cars) {
@@ -27,6 +39,7 @@ class Car {
           error: 'No Car Advert found',
         });
       }
+
       res.status(200).send({
         status: 200,
         data: cars,
