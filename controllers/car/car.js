@@ -4,6 +4,7 @@
 /* jshint node: true */
 
 import model from '../../db/db';
+import filterValue from '../../middleware/helper';
 
 class Car {
   getCars(req, res) {
@@ -51,6 +52,40 @@ class Car {
 
     return res.status(201).send({
       status: 201,
+      data: {
+        id: carAd.id,
+        owner: carAd.owner,
+        created_on: carAd.created_on,
+        manufacturer: carAd.manufacturer,
+        model: carAd.model,
+        price: carAd.price,
+        state: carAd.state,
+        status: carAd.status,
+      },
+    });
+  }
+
+  markAsSold(req, res) {
+    const carAd = filterValue(model.car, 'id', parseInt(req.params.id, 10));
+    // eslint-disable-next-line no-console
+    console.log('search for car', carAd);
+    if (!carAd) {
+      return res.status(404).send({
+        status: 404,
+        error: `Vehicle with ID ${req.params.id} not found`,
+      });
+    } else if (!req.body.status) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Something went wrong, internal server errror',
+      });
+    }
+
+    // mark as sold
+    carAd.status = 'sold';
+
+    return res.status(200).send({
+      status: 200,
       data: {
         id: carAd.id,
         owner: carAd.owner,

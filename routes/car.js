@@ -15,4 +15,7 @@ routerCar.get('/api/v1/car', authentication, car.getCars);
 // post car advert
 routerCar.post('/api/v1/car', [authentication, seller], car.postCarAd);
 
+// mark car as sold
+routerCar.patch('/api/v1/car/:id/price', [authentication, seller], car.markAsSold);
+
 export default routerCar;
