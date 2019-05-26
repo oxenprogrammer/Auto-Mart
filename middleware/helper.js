@@ -2,6 +2,6 @@
 /* jshint -W097 */
 /* jshint node: true */
 
-const filterValue = (obj, key, value) => obj.find(v => v[key] === value);
+const filterValue = (obj, key, value) => obj.filter(v => v[key] === value);
 
 export default filterValue;
