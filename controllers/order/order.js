@@ -64,7 +64,7 @@ class Order {
 
   updatePurchaseOrder(req, res) {
     const carOrder = filterValue(model.order, 'id', parseInt(req.params.id, 10));
-    const pending = model.car.filter(car => car.status === 'pending');
+    const pending = model.order.filter(order => order.status === 'pending');
     // eslint-disable-next-line no-console
     console.log('search for order', carOrder);
     if (!carOrder) {
