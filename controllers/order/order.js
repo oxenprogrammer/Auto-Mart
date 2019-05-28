@@ -107,8 +107,7 @@ class Order {
 
   acceptRejectPurchaseOrder(req, res) {
     const carOrder = filterValue(model.order, 'id', parseInt(req.params.id, 10));
-    // eslint-disable-next-line no-console
-    console.log('hhshsshsh', carOrder);
+
     if (!carOrder) {
       return res.status(404).send({
         status: 404,
