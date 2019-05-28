@@ -108,10 +108,18 @@ class Order {
   acceptRejectPurchaseOrder(req, res) {
     const carOrder = filterValue(model.order, 'id', parseInt(req.params.id, 10));
 
+    let carSeller;
+    if (carOrder) carSeller = model.car.find(car => car.id === carOrder.car_id);
+
     if (!carOrder) {
       return res.status(404).send({
         status: 404,
         error: `Order with Id ${req.params.id} not found`,
+      });
+    } else if (carSeller.owner !== req.id) {
+      return res.status(403).send({
+        status: 403,
+        error: 'It is illegal to sell someone\'s else car',
       });
     } else if (carOrder.status === 'accepted' || carOrder.status === 'rejected') {
       return res.status(400).send({
