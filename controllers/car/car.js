@@ -20,7 +20,7 @@ class Car {
     if (queryUnsold) {
       // const minPrice = filterValue(model.car, 'price', req.query.min_price);
       // const maxPrice = filterValue(model.car, 'price', req.query.max_price);
-      const cars = filterValue(model.car, 'status', req.query.status);
+      const cars = model.car.filter(car => car.status === req.query.status);
 
       if (req.query.min_price && req.query.max_price) {
         // eslint-disable-next-line max-len
@@ -81,7 +81,7 @@ class Car {
     }
 
     let lastCarId = 0;
-    if (model.user.length > 0) {
+    if (model.car.length > 0) {
       lastCarId = model.car[model.car.length - 1].id;
     }
 
