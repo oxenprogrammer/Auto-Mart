@@ -81,7 +81,7 @@ class Car {
     }
 
     let lastCarId = 0;
-    if (model.user.length > 0) {
+    if (model.car.length > 0) {
       lastCarId = model.car[model.car.length - 1].id;
     }
 
