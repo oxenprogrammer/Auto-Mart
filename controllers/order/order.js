@@ -61,6 +61,48 @@ class Order {
       },
     });
   }
+
+  updatePurchaseOrder(req, res) {
+    const carOrder = filterValue(model.order, 'id', parseInt(req.params.id, 10));
+    const pending = carOrder.filter(car => car.status === 'pending');
+    // eslint-disable-next-line no-console
+    console.log('search for order', carOrder);
+    if (!carOrder) {
+      return res.status(404).send({
+        status: 404,
+        error: `Purchase Order with ID ${req.params.id} not found`,
+      });
+    } else if (!pending) {
+      return res.status(404).send({
+        status: 404,
+        error: `Vehicle ${carOrder.car_id} orders accepted or rejected already`,
+      });
+    } else if (!req.body.amount) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Something went wrong, internal server errror',
+      });
+    }
+
+    // old price offered
+    const oldPrice = carOrder.amount;
+
+    // new car price
+    carOrder.amount = req.body.amount;
+
+    return res.status(200).send({
+      status: 200,
+      data: {
+        id: carOrder.id,
+        car_id: carOrder.car_id,
+        created_on: carOrder.created_on,
+        date_modified: Date.now(),
+        old_price_offered: oldPrice,
+        new_price_offered: carOrder.amount,
+        status: carOrder.status,
+      },
+    });
+  }
 }
 
 const order = new Order();

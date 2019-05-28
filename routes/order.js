@@ -15,4 +15,7 @@ routerOrder.get('/api/v1/order', authentication, order.getOrders);
 // post car purchase order
 routerOrder.post('/api/v1/order', [authentication, buyer], order.postCarOrder);
 
+// update purchase order
+routerOrder.patch('/api/v1/order/:id/price', [authentication, buyer], order.updatePurchaseOrder);
+
 export default routerOrder;
