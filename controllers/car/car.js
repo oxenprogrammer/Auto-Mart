@@ -183,6 +183,28 @@ class Car {
       },
     });
   }
+
+  deleteCarAd(req, res) {
+    // eslint-disable-next-line array-callback-return
+    model.car.map((car, index) => {
+      if (car.id === parseInt(req.params.id, 10)) {
+        model.car.splice(index, 1);
+        return res.status(202).send({
+          status: 202,
+          data: '​ Car Ad successfully deleted',
+        });
+      }
+      return res.status(400).send({
+        status: 400,
+        data: '​Something went wrong',
+      });
+    });
+
+    return res.status(404).send({
+      status: 404,
+      error: `Car with ID ${req.params.id} not found`,
+    });
+  }
 }
 
 const car = new Car();

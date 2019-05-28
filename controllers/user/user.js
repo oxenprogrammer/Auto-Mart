@@ -55,7 +55,7 @@ class User {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       address: req.body.address,
-      is_admin: false,
+      is_admin: true,
       user_class: req.body.user_class,
       password: req.body.password,
     };

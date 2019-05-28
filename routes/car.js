@@ -6,6 +6,7 @@ import express from 'express';
 import car from '../controllers/car/car';
 import authentication from '../middleware/auth';
 import seller from '../middleware/seller';
+import admin from '../middleware/admin';
 
 const routerCar = express.Router();
 
@@ -23,5 +24,8 @@ routerCar.patch('/api/v1/car/:id/status', [authentication, seller], car.markAsSo
 
 // update car price
 routerCar.patch('/api/v1/car/:id/price', [authentication, seller], car.updateCarPrice);
+
+// delete car ad
+routerCar.delete('/api/v1/car/:id/', [authentication, admin], car.deleteCarAd);
 
 export default routerCar;
