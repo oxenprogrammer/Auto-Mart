@@ -64,9 +64,10 @@ class Order {
 
   updatePurchaseOrder(req, res) {
     const carOrder = filterValue(model.order, 'id', parseInt(req.params.id, 10));
-    const pending = model.order.filter(order => order.status === 'pending');
+    const pending = model.order.some(order => order.status === 'pending');
     // eslint-disable-next-line no-console
     console.log('search for order', carOrder);
+    console.log('pending', pending);
     if (!carOrder) {
       return res.status(404).send({
         status: 404,
@@ -101,6 +102,43 @@ class Order {
         new_price_offered: carOrder.amount,
         status: carOrder.status,
       },
+    });
+  }
+
+  acceptRejectPurchaseOrder(req, res) {
+    const carOrder = filterValue(model.order, 'id', parseInt(req.params.id, 10));
+
+    let carSeller;
+    if (carOrder) carSeller = model.car.find(car => car.id === carOrder.car_id);
+
+    if (!carOrder) {
+      return res.status(404).send({
+        status: 404,
+        error: `Order with Id ${req.params.id} not found`,
+      });
+    } else if (carSeller.owner !== req.id) {
+      return res.status(403).send({
+        status: 403,
+        error: 'It is illegal to sell someone\'s else car',
+      });
+    } else if (carOrder.status === 'accepted' || carOrder.status === 'rejected') {
+      return res.status(400).send({
+        status: 400,
+        error: `This Order has already been ${carOrder.status}`,
+      });
+    } else if (!req.body.status) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Something went wrong',
+      });
+    }
+
+    // reject or accept purchase order request from buyer
+    carOrder.status = req.body.status;
+
+    return res.status(200).send({
+      status: 200,
+      data: carOrder,
     });
   }
 }
