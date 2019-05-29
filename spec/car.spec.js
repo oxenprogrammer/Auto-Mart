@@ -51,6 +51,12 @@ describe('Server', () => {
         it('should return 200', () => {
             expect(data.status).toBe(200);
         }); 
+
+        it('should return response body', () => {
+            expect(data.body).toEqual(
+                '{"status":200,"data":[{"id":1,"owner":1,"created_on":"05-22-2019","state":"new","status":"available","price":5676.55,"manufacturer":"toyota","model":"1992","body_type":"car","date_modified":"05-28-2019"}]}'
+            );
+        });
    
     });
 });
