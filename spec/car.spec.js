@@ -135,10 +135,14 @@ describe('Server', () => {
             });
         });
 
-        it('should return an empty array of length 0', () => {
+        it('should return invalid token', () => {
             expect(data.body.error.message).toBe('invalid token');
             expect(data.body.error.name).toBe('JsonWebTokenError');
-        });    
+        });
+        
+        it('should return 401', () => {
+            expect(data.status).toBe(401);
+        });
     });
 
     describe('GET /:id', () => {
@@ -158,6 +162,51 @@ describe('Server', () => {
 
         it('should return 200 for a specific car', () => {
             expect(data.status).toBe(200);
+        });    
+    });
+
+    describe('GET /', () => {
+        beforeAll((done) => {
+            options = {
+                url: 'http://127.0.0.1:3000/api/v1/car/1',
+                headers: {
+                    'x-auth-token': 'vyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaXNfYWRtaW4iOnRydWUsInVzZXJfY2xhc3MiOiJTRUxMRVIiLCJpYXQiOjE1NTkxNDg4NTYsImV4cCI6MTU1OTIzNTI1Nn0.N6Mi4Qgk0RPcCk6DedYPxHaf42syfGtTsL8QVgeb3s8',
+                }
+            };
+            request.get(options, (error, response, body) => {
+                data.status = response.statusCode;
+                data.body = JSON.parse(body);
+                done();
+            });
+        });
+
+        it('should return invalid token', () => {
+            expect(data.body.error.message).toBe('invalid token');
+            expect(data.body.error.name).toBe('JsonWebTokenError');
+        }); 
+        
+        it('should return 401', () => {
+            expect(data.status).toBe(401);
+        });
+    });
+
+    describe('GET /:id', () => {
+        beforeAll((done) => {
+            options = {
+                url: 'http://127.0.0.1:3000/api/v1/car/2',
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+            request.get(options, (error, response, body) => {
+                data.status = response.statusCode;
+                data.body = body;
+                done();
+            });
+        });
+
+        it('should return 404 for a no specific car', () => {
+            expect(data.status).toBe(404);
         });    
     });
 });
