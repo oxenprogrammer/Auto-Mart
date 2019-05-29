@@ -140,4 +140,24 @@ describe('Server', () => {
             expect(data.body.error.name).toBe('JsonWebTokenError');
         });    
     });
+
+    describe('GET /:id', () => {
+        beforeAll((done) => {
+            options = {
+                url: 'http://127.0.0.1:3000/api/v1/car/1',
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+            request.get(options, (error, response, body) => {
+                data.status = response.statusCode;
+                data.body = body;
+                done();
+            });
+        });
+
+        it('should return 200 for a specific car', () => {
+            expect(data.status).toBe(200);
+        });    
+    });
 });
