@@ -22,7 +22,9 @@ app.use(routerFlag);
 
 const PORT = 3000;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`server running on port ${PORT}`);
 });
+
+export default server;
