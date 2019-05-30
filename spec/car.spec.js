@@ -43,7 +43,7 @@ describe('Server', () => {
             };
             request.get(options, (error, response, body) => {
                 data.status = response.statusCode;
-                data.body = body;
+                data.body = JSON.parse(body);
                 done();
             });
         });
@@ -53,8 +53,24 @@ describe('Server', () => {
         }); 
 
         it('should return response body', () => {
-            expect(data.body).toEqual(
-                '{"status":200,"data":[{"id":1,"owner":1,"created_on":"05-22-2019","state":"new","status":"available","price":5676.55,"manufacturer":"toyota","model":"1992","body_type":"car","date_modified":"05-28-2019"}]}'
+            expect(data.body.status).toEqual(200);
+            expect(data.body.data).toEqual(
+                [ 
+                    Object(
+                        { 
+                            id: 1, 
+                            owner: 1, 
+                            created_on: '05-22-2019', 
+                            state: 'new', 
+                            status: 'available', 
+                            price: 5676.55, 
+                            manufacturer: 'toyota', 
+                            model: '1992', 
+                            body_type: 'car', 
+                            date_modified: '05-28-2019' 
+                        }
+                    ) 
+                ]
             );
         });
    
@@ -70,13 +86,31 @@ describe('Server', () => {
             };
             request.get(options, (error, response, body) => {
                 data.status = response.statusCode;
-                data.body = body;
+                data.body = JSON.parse(body);
                 done();
             });
         });
 
         it('should return 200 for available cars', () => {
             expect(data.status).toBe(200);
+            expect(data.body.data).toEqual(
+                [ 
+                    Object(
+                        { 
+                            id: 1, 
+                            owner: 1, 
+                            created_on: '05-22-2019', 
+                            state: 'new', 
+                            status: 'available', 
+                            price: 5676.55, 
+                            manufacturer: 'toyota', 
+                            model: '1992', 
+                            body_type: 'car', 
+                            date_modified: '05-28-2019' 
+                        }
+                    ) 
+                ]
+            );
         });    
     });
 
@@ -90,17 +124,35 @@ describe('Server', () => {
             };
             request.get(options, (error, response, body) => {
                 data.status = response.statusCode;
-                data.body = body;
+                data.body = JSON.parse(body);
                 done();
             });
         });
 
         it('should return 200 if car is available within price range', () => {
             expect(data.status).toBe(200);
+            expect(data.body.data).toEqual(
+                [ 
+                    Object(
+                        { 
+                            id: 1, 
+                            owner: 1, 
+                            created_on: '05-22-2019', 
+                            state: 'new', 
+                            status: 'available', 
+                            price: 5676.55, 
+                            manufacturer: 'toyota', 
+                            model: '1992', 
+                            body_type: 'car', 
+                            date_modified: '05-28-2019' 
+                        }
+                    ) 
+                ]
+            );
         });    
     });
 
-    describe('GET /available/max_price/min_price', () => {
+    describe('GET /available/max_price/min_price no price range', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car?status=available&min_price=90000&max_price=100000',
@@ -116,6 +168,7 @@ describe('Server', () => {
         });
 
         it('should return an empty array of length 0', () => {
+            expect(data.status).toBe(200);
             expect(data.body.data.length).toEqual(0);
         });    
     });
@@ -165,7 +218,7 @@ describe('Server', () => {
         });    
     });
 
-    describe('GET /', () => {
+    describe('GET / without auth', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car/1',
@@ -180,17 +233,17 @@ describe('Server', () => {
             });
         });
 
-        it('should return invalid token', () => {
+        it('should return invalid token on specific car', () => {
             expect(data.body.error.message).toBe('invalid token');
             expect(data.body.error.name).toBe('JsonWebTokenError');
         }); 
         
-        it('should return 401', () => {
+        it('should return 401 if not authorized', () => {
             expect(data.status).toBe(401);
         });
     });
 
-    describe('GET /:id', () => {
+    describe('GET /:id no specific car', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car/2',
