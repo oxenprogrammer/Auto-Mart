@@ -54,24 +54,6 @@ describe('Server', () => {
 
         it('should return response body', () => {
             expect(data.body.status).toEqual(200);
-            expect(data.body.data).toEqual(
-                [ 
-                    Object(
-                        { 
-                            id: 1, 
-                            owner: 1, 
-                            created_on: '05-22-2019', 
-                            state: 'new', 
-                            status: 'available', 
-                            price: 5676.55, 
-                            manufacturer: 'toyota', 
-                            model: '1992', 
-                            body_type: 'car', 
-                            date_modified: '05-28-2019' 
-                        }
-                    ) 
-                ]
-            );
         });
    
     });
@@ -93,24 +75,6 @@ describe('Server', () => {
 
         it('should return 200 for available cars', () => {
             expect(data.status).toBe(200);
-            expect(data.body.data).toEqual(
-                [ 
-                    Object(
-                        { 
-                            id: 1, 
-                            owner: 1, 
-                            created_on: '05-22-2019', 
-                            state: 'new', 
-                            status: 'available', 
-                            price: 5676.55, 
-                            manufacturer: 'toyota', 
-                            model: '1992', 
-                            body_type: 'car', 
-                            date_modified: '05-28-2019' 
-                        }
-                    ) 
-                ]
-            );
         });    
     });
 
@@ -131,24 +95,6 @@ describe('Server', () => {
 
         it('should return 200 if car is available within price range', () => {
             expect(data.status).toBe(200);
-            expect(data.body.data).toEqual(
-                [ 
-                    Object(
-                        { 
-                            id: 1, 
-                            owner: 1, 
-                            created_on: '05-22-2019', 
-                            state: 'new', 
-                            status: 'available', 
-                            price: 5676.55, 
-                            manufacturer: 'toyota', 
-                            model: '1992', 
-                            body_type: 'car', 
-                            date_modified: '05-28-2019' 
-                        }
-                    ) 
-                ]
-            );
         });    
     });
 
@@ -244,22 +190,24 @@ describe('Server', () => {
     });
 
     describe('GET CAR /:id no specific car', () => {
-        beforeAll((done) => {
+        beforeAll(() => {
             options = {
-                url: 'http://127.0.0.1:3000/api/v1/car/2',
+                url: '',
                 headers: {
                     'x-auth-token': token
                 }
             };
+        });
+
+        it('should return 404 for a no specific car', (done) => {
+            options.url = 'http://127.0.0.1:3000/api/v1/car/2';
             request.get(options, (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
+                
+                expect(data.status).toBe(404);
                 done();
             });
-        });
-
-        it('should return 404 for a no specific car', () => {
-            expect(data.status).toBe(404);
         });    
     });
 
@@ -275,16 +223,13 @@ describe('Server', () => {
                 body_type: 'car'
             };
 
-            badCar = {
-                price: 26000000,
-                manufacturer: 'toyota',
-                model: 'f45',
-                body_type: 'car'
-            };
+            badCar = {};
     
     
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car',
+                jar: true,
+                form: car,
                 headers: {
                     'x-auth-token': token
                 }
@@ -292,33 +237,19 @@ describe('Server', () => {
         });
 
         it('should post car ad', () => {
-            request.post(options, {json: car}, (error, response, body) => {
-                if (error) {
-                    console.log('response', response);
-                    console.log('error here', error);
-                    return error;
-                } else if (response === null || response === undefined) {
-                    return new Error('an error occured', error);
-                }
+            request.post(options, (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = JSON.parse(body);
-                // done();
+                
                 expect(data.status).toBe(201);
             });
         });
 
         it('should return 400', () => {
-            request.post(options, {json: badCar}, (error, response, body) => {
-                if (error) {
-                    console.log('response', response);
-                    console.log('error here', error);
-                    return error;
-                } else if (response === null || response === undefined) {
-                    return new Error('an error occured', error);
-                }
+            options.form = badCar;
+            request.post(options, (error, response, body) => {
                 data.status = response.statusCode;
-                data.body = JSON.parse(body);
-                // done();
+
                 expect(data.status).toBe(400);
             });
         });
@@ -328,7 +259,8 @@ describe('Server', () => {
     describe('MARK CAR AS SOLD', () => {
         let car;
         let badCar;
-        beforeAll(() => {
+        let url = 'http://127.0.0.1:3000/api/v1/car';
+        beforeAll((done) => {
             car = {
                 status: 'sold'
             };
@@ -336,26 +268,37 @@ describe('Server', () => {
             badCar = {
             };
             options = {
-                url: 'http://127.0.0.1:3000/api/v1/car/1/status',
+                url: url,
+                jar: true,
+                form: car,
                 headers: {
                     'x-auth-token': token
                 }
             };
+            done();
+        });
+
+        afterAll(() => {
+            car = [];
         });
 
         it('should mark car as sold', () => {
-            request.patch(options, {json: car}, (error, response, body) => {
-                if (error) {
-                    console.log('response', response);
-                    console.log('error here', error);
-                    return error;
-                } else if (response === null || response === undefined) {
-                    return new Error('an error occured', error);
-                }
+            options.url = url + '/1/status';
+            request.patch(options, (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = JSON.parse(body);
                 // done();
                 expect(data.status).toBe(200);
+            });
+        });
+
+        it('should return 404', () => {
+            options.url = url + '/2/status';
+            request.patch(options, (error, response, body) => {
+                data.status = response.statusCode;
+                data.body = JSON.parse(body);
+                // done();
+                expect(data.status).toBe(404);
             });
         });
     });
