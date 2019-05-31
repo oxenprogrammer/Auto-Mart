@@ -33,7 +33,7 @@ describe('Server', () => {
         ser.close();
     });
     
-    describe('GET', () => {
+    describe('GET CAR', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car',
@@ -76,7 +76,7 @@ describe('Server', () => {
    
     });
 
-    describe('GET /available', () => {
+    describe('GET CAR /available', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car?status=available',
@@ -114,7 +114,7 @@ describe('Server', () => {
         });    
     });
 
-    describe('GET /available/max_price/min_price', () => {
+    describe('GET CAR  /available/max_price/min_price', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car?status=available&min_price=2000&max_price=6000',
@@ -152,7 +152,7 @@ describe('Server', () => {
         });    
     });
 
-    describe('GET /available/max_price/min_price no price range', () => {
+    describe('GET CAR /available/max_price/min_price no price range', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car?status=available&min_price=90000&max_price=100000',
@@ -173,7 +173,7 @@ describe('Server', () => {
         });    
     });
 
-    describe('GET /', () => {
+    describe('GET CAR /', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car',
@@ -198,7 +198,7 @@ describe('Server', () => {
         });
     });
 
-    describe('GET /:id', () => {
+    describe('GET CAR /:id', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car/1',
@@ -218,7 +218,7 @@ describe('Server', () => {
         });    
     });
 
-    describe('GET / without auth', () => {
+    describe('GET CAR / without auth', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car/1',
@@ -243,7 +243,7 @@ describe('Server', () => {
         });
     });
 
-    describe('GET /:id no specific car', () => {
+    describe('GET CAR /:id no specific car', () => {
         beforeAll((done) => {
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car/2',
@@ -262,4 +262,42 @@ describe('Server', () => {
             expect(data.status).toBe(404);
         });    
     });
+
+    describe('POST CAR', () => {
+        let car;
+        beforeAll(() => {
+            car = {
+                state: 'new',
+                price: 26000000,
+                manufacturer: 'toyota',
+                model: 'f45',
+                body_type: 'car'
+            };
+    
+            options = {
+                url: 'http://127.0.0.1:3000/api/v1/car',
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+        });
+
+        it('should post car ad', () => {
+            request.post(options, {json: car}, (error, response, body) => {
+                if (error) {
+                    console.log('response', response);
+                    console.log('error here', error);
+                    return error;
+                } else if (response === null || response === undefined) {
+                    return new Error('an error occured', error);
+                }
+                data.status = response.statusCode;
+                data.body = JSON.parse(body);
+                // done();
+                expect(data.status).toBe(200);
+            });
+        });
+
+    });
 });
+
