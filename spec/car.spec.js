@@ -265,6 +265,7 @@ describe('Server', () => {
 
     describe('POST CAR', () => {
         let car;
+        let badCar;
         beforeAll(() => {
             car = {
                 state: 'new',
@@ -273,6 +274,14 @@ describe('Server', () => {
                 model: 'f45',
                 body_type: 'car'
             };
+
+            badCar = {
+                price: 26000000,
+                manufacturer: 'toyota',
+                model: 'f45',
+                body_type: 'car'
+            };
+    
     
             options = {
                 url: 'http://127.0.0.1:3000/api/v1/car',
@@ -294,10 +303,63 @@ describe('Server', () => {
                 data.status = response.statusCode;
                 data.body = JSON.parse(body);
                 // done();
-                expect(data.status).toBe(200);
+                expect(data.status).toBe(201);
+            });
+        });
+
+        it('should return 400', () => {
+            request.post(options, {json: badCar}, (error, response, body) => {
+                if (error) {
+                    console.log('response', response);
+                    console.log('error here', error);
+                    return error;
+                } else if (response === null || response === undefined) {
+                    return new Error('an error occured', error);
+                }
+                data.status = response.statusCode;
+                data.body = JSON.parse(body);
+                // done();
+                expect(data.status).toBe(400);
             });
         });
 
     });
+
+    describe('MARK CAR AS SOLD', () => {
+        let car;
+        let badCar;
+        beforeAll(() => {
+            car = {
+                status: 'sold'
+            };
+
+            badCar = {
+            };
+            options = {
+                url: 'http://127.0.0.1:3000/api/v1/car/1/status',
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+        });
+
+        it('should mark car as sold', () => {
+            request.patch(options, {json: car}, (error, response, body) => {
+                if (error) {
+                    console.log('response', response);
+                    console.log('error here', error);
+                    return error;
+                } else if (response === null || response === undefined) {
+                    return new Error('an error occured', error);
+                }
+                data.status = response.statusCode;
+                data.body = JSON.parse(body);
+                // done();
+                expect(data.status).toBe(200);
+            });
+        });
+    });
+
 });
+
 
