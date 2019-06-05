@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "babel-node spec/run.js",
-    "start": "nodemon server.js --exec babel-node --"
+    "start": "nodemon server.js --exec babel-node --",
+    "test-cover": "istanbul cover --include-all-sources spec/support/specs.js && istanbul check-coverage"
   },
   "repository": {
     "type": "git",
