@@ -1,0 +1,450 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1",
+      "title": "Auto-Mart",
+      "description": "Auto Mart is an online marketplace for automobiles of diverse makes, model or body type.",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Auto-Mart",
+        "description": "API to manage car adverts, buy and sell cars"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/auth/signup": {
+        "post": {
+          "tags": [
+            "User Account"
+          ],
+          "description": "Create new buyer/seller in system, required fields: first_name, last_name, email, address, user_class, password",
+          "parameters": [
+            {
+              "name": "signup",
+              "in": "body",
+              "description": "buyer/seller signup",
+              "schema": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "buyer/seller successfully created",
+              "schema": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          }
+        }
+      },
+      "/auth/signin": {
+        "post": {
+            "tags": [
+              "User Account"
+            ],
+            "description": "login into the system as a buyer, seller or admin, required fields: email, password",
+            "parameters": [
+              {
+                "name": "signin",
+                "in": "body",
+                "description": "buyer/seller/admin signin",
+                "schema": {
+                  "$ref": "#/definitions/user"
+                }
+              }
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "buyer/seller successfully signedin",
+                "schema": {
+                  "$ref": "#/definitions/user"
+                }
+              }
+            }
+          }
+      },
+      "/car": {
+        "post": {
+            "tags": [
+                "Car Advert"
+            ],
+            "description": "Seller can post car advert: required field; state, price, manufacturer, model, body_type",
+            "parameters": [
+                {
+                    "name": "car",
+                    "in": "body",
+                    "description": "seller post car advert",
+                    "schema": {
+                        "$ref": "#/definations/car"
+                    }
+                }
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "201": {
+                    "description": "car advert successfully created",
+                    "schema": {
+                        "$ref": "#/definations/car"
+                    }
+                }
+            }
+        },
+        "get": {
+            "tags": [
+                "Car Advert"
+            ],
+            "summary": "Get all Cars",
+            "responses": {
+                "200": {
+                    "description": "Car Adverts found",
+                    "schema": {
+                        "$ref": "#/definations/car"
+                    }
+                }
+            }
+        }
+      },
+      "/car/{id}": {
+        "get": {
+          "tags": [
+            "Car Advert"
+          ],
+          "summary": "Get a Specific Car with given ID",
+          "responses": {
+            "200": {
+              "description": "Car is found",
+              "schema": {
+                "$ref": "#/definitions/car"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a Specific Car Ad with given ID",
+          "tags": [
+            "Car Advert"
+          ],
+          "responses": {
+            "202": {
+              "description": "Car Ad is deleted",
+              "schema": {
+                "$ref": "#/definitions/car"
+              }
+            }
+          }
+        }
+      },
+      "/car/{id}/status": {
+          "patch": {
+            "summary": "Update status of a car ad from pending to rejected or sold",
+            "tags": [
+                "Car Advert"
+            ],
+            "parameter": [
+                {
+                    "name": "car",
+                    "in": "body",
+                    "description": "Status of a car updated by seller",
+                    "schema": {
+                        "$ref": "#/definations/car"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                  "description": "car ad status is updated",
+                  "schema": {
+                    "$ref": "#/definitions/car"
+                  }
+                }
+            }
+          }
+      },
+      "/car/{id}/price": {
+        "patch": {
+          "summary": "Seller Update price of a car ad",
+          "tags": [
+              "Car Advert"
+          ],
+          "parameter": [
+              {
+                  "name": "car",
+                  "in": "body",
+                  "description": "Price of a car updated by seller",
+                  "schema": {
+                      "$ref": "#/definations/car"
+                  }
+              }
+          ],
+          "responses": {
+              "200": {
+                "description": "car ad price is updated",
+                "schema": {
+                  "$ref": "#/definitions/car"
+                }
+              }
+          }
+        }
+    },
+      "/order": {
+        "post": {
+          "tags": [
+            "Purchase Order"
+          ],
+          "description": "Buyer makes purchase order, required fields: car_id, amount",
+          "parameters": [
+            {
+              "name": "order",
+              "in": "body",
+              "description": "buyers make purchase order",
+              "schema": {
+                "$ref": "#/definitions/order"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Purchase order successfully posted",
+              "schema": {
+                "$ref": "#/definitions/order"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Purchase Order"
+          ],
+          "summary": "Get all purchase orders",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/order"
+              }
+            }
+          }
+        }
+      },
+      "/order/{id}": {
+        "get": {
+          "tags": [
+            "Purchase Order"
+          ],
+          "summary": "get a specific purchase order",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/order"
+              }
+            }
+          }
+        }
+      },
+      "/order/{id}/price": {
+        "patch": {
+          "summary": "buyer updates price of purchase order if still pending",
+          "tags": [
+              "Purchase Order"
+          ],
+          "parameter": [
+              {
+                  "name": "order",
+                  "in": "body",
+                  "description": "Price of a purchase order updated by buyer",
+                  "schema": {
+                      "$ref": "#/definations/order"
+                  }
+              }
+          ],
+          "responses": {
+              "200": {
+                "description": "car purchse order price is updated",
+                "schema": {
+                  "$ref": "#/definitions/order"
+                }
+              }
+          }
+        }
+    },
+
+    "/order/{id}/status": {
+        "patch": {
+          "summary": "seller accepts or rejects his/her purchase order",
+          "tags": [
+              "Purchase Order"
+          ],
+          "parameter": [
+              {
+                  "name": "order",
+                  "in": "body",
+                  "description": "Price of a purchase order updated by buyer",
+                  "schema": {
+                      "$ref": "#/definations/order"
+                  }
+              }
+          ],
+          "responses": {
+              "200": {
+                "description": "car purchse order price is updated",
+                "schema": {
+                  "$ref": "#/definitions/order"
+                }
+              }
+          }
+        }
+    }
+    },
+    
+    "definitions": {
+      "car": {
+        "required": [
+          "state",
+          "price",
+          "manufacturer",
+          "model",
+          "body_type"
+        ],
+        "properties": {
+          "state": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "price": {
+            "type": "float",
+            "uniqueItems": false
+          },
+          "manufacturer": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "model": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "body_type": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "created_on": {
+            "type": "string"
+          },
+          "date_modified": {
+              "type": "string"
+          },
+          "owner": {
+              "type": "number"
+          },
+          "id": {
+              "type": "number",
+              "uniqueItems": true
+          }
+        }
+      },
+      "order": {
+        "required": [
+          "car_id",
+          "amount"
+        ],
+        "properties": {
+          "car_id": {
+            "type": "number",
+            "uniqueItems": true
+          },
+          "amount": {
+            "type": "float",
+            "uniqueItems": false
+          },
+          "id": {
+            "type": "number",
+            "uniqueItems": true
+          },
+          "buyer": {
+            "type": "number",
+            "uniqueItems": false
+          },
+          "status": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "created_on": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "modified_on": {
+            "type": "string",
+            "uniqueItems": false
+          }
+        }
+      },
+      "user": {
+        "required": [
+          "first_name",
+          "last_name",
+          "email",
+          "address",
+          "password",
+          "user_class"
+        ],
+        "properties": {
+          "id": {
+            "type": "number",
+            "uniqueItems": true
+          },
+          "is_admin": {
+            "type": "boolean",
+            "uniqueItems": false,
+            "default": false
+          },
+          "first_name": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "last_name": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "address": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "user_class": {
+            "type": "string",
+            "uniqueItems": false
+          }
+        }
+      }
+    }
+  }
