@@ -28,7 +28,7 @@ class Order {
       lastOrderId = model.order[model.order.length - 1].id;
     }
 
-    const carId = model.car.find(car => car.id === req.body.car_id);
+    const carId = model.car.find(car => car.id === parseInt(req.body.car_id, 10));
 
     if (!carId) {
       return res.status(404).send({
