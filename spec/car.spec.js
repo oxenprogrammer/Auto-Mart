@@ -1,3 +1,5 @@
+/* eslint-disable jasmine/no-suite-dupes */
+/* eslint-disable jasmine/no-spec-dupes */
 /* eslint-disable class-methods-use-this */
 /* jshint esversion: 8 */
 /* jshint -W097 */
@@ -524,6 +526,7 @@ describe('SERVER', () => {
         });
 
         describe('TEST ALL GETS', () => {
+            // eslint-disable-next-line jasmine/no-suite-dupes
             describe('GET /', () => {
                 beforeEach((done) => {
                     options = {
@@ -549,6 +552,7 @@ describe('SERVER', () => {
                 //     expect(data.body.status).toBe(200);
                 // });
             });
+
             describe('GET /bad token', () => {
                 beforeEach((done) => {
                     options = {
