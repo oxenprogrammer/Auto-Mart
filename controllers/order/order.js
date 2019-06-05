@@ -9,9 +9,8 @@ import filterValue from '../../middleware/helper';
 class Order {
   getOrders(req, res) {
     res.status(200).send({
-      success: 'true',
-      message: 'successfully retrieved orders',
-      orders: model.order,
+      status: 200,
+      data: model.order,
     });
   }
 
