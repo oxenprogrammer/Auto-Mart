@@ -10,3 +10,15 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 
 ## For Swagger Documentations on your local host
 - http://localhost:3000/api-docs
+
+### Technology Used
+- Nodejs
+- EcmaScript 2015
+- ExpressJs
+- NPM libraries
+
+### Tools
+- Babel for transpiling
+- Jasmine for unit testing
+- Pivotal Tracker for Project Management
+
