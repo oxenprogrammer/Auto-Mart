@@ -64,9 +64,6 @@ class Order {
   updatePurchaseOrder(req, res) {
     const carOrder = filterValue(model.order, 'id', parseInt(req.params.id, 10));
     const pending = model.order.some(order => order.status === 'pending');
-    // eslint-disable-next-line no-console
-    console.log('search for order', carOrder);
-    console.log('pending', pending);
     if (!carOrder) {
       return res.status(404).send({
         status: 404,

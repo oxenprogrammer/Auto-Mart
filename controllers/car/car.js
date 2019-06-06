@@ -18,8 +18,6 @@ class Car {
     const queryUnsold = req.query.status;
 
     if (queryUnsold) {
-      // const minPrice = filterValue(model.car, 'price', req.query.min_price);
-      // const maxPrice = filterValue(model.car, 'price', req.query.max_price);
       const cars = model.car.filter(car => car.status === req.query.status);
 
       if (req.query.min_price && req.query.max_price) {
@@ -31,8 +29,6 @@ class Car {
         });
       }
 
-      // eslint-disable-next-line no-console
-      console.log('available cars', cars);
       if (!cars) {
         res.status(404).send({
           status: 404,
@@ -118,8 +114,6 @@ class Car {
 
   markAsSold(req, res) {
     const carAd = filterValue(model.car, 'id', parseInt(req.params.id, 10));
-    // eslint-disable-next-line no-console
-    console.log('search for car', carAd);
     if (!carAd) {
       return res.status(404).send({
         status: 404,
@@ -152,8 +146,6 @@ class Car {
 
   updateCarPrice(req, res) {
     const carAd = filterValue(model.car, 'id', parseInt(req.params.id, 10));
-    // eslint-disable-next-line no-console
-    console.log('search for car', carAd);
     if (!carAd) {
       return res.status(404).send({
         status: 404,

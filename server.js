@@ -26,11 +26,8 @@ app.use(routerOrder);
 app.use(routerFlag);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`server running on port ${PORT}`);
-});
+const server = app.listen(PORT, () => {});
 
 export default server;
