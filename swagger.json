@@ -415,15 +415,6 @@
           "user_class"
         ],
         "properties": {
-          "id": {
-            "type": "number",
-            "uniqueItems": true
-          },
-          "is_admin": {
-            "type": "boolean",
-            "uniqueItems": false,
-            "default": false
-          },
           "first_name": {
             "type": "string",
             "uniqueItems": false
@@ -441,6 +432,10 @@
             "uniqueItems": false
           },
           "user_class": {
+            "type": "string",
+            "uniqueItems": false
+          },
+          "password": {
             "type": "string",
             "uniqueItems": false
           }
