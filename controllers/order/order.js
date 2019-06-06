@@ -9,9 +9,8 @@ import filterValue from '../../middleware/helper';
 class Order {
   getOrders(req, res) {
     res.status(200).send({
-      success: 'true',
-      message: 'successfully retrieved orders',
-      orders: model.order,
+      status: 200,
+      data: model.order,
     });
   }
 
@@ -28,7 +27,7 @@ class Order {
       lastOrderId = model.order[model.order.length - 1].id;
     }
 
-    const carId = model.car.find(car => car.id === req.body.car_id);
+    const carId = model.car.find(car => car.id === parseInt(req.body.car_id, 10));
 
     if (!carId) {
       return res.status(404).send({
