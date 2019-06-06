@@ -1,0 +1,58 @@
+{
+  "name": "auto-mart",
+  "version": "1.0.0",
+  "description": "Auto Mart is an online marketplace for automobiles of diverse makes, model or body type.",
+  "main": "server.js",
+  "scripts": {
+    "test": "babel-node spec/run.js",
+    "start": "nodemon server.js --exec babel-node --",
+    "test-cover": "istanbul cover --include-all-sources spec/support/specs.js && istanbul check-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxenprogrammer/Auto-Mart.git"
+  },
+  "keywords": [
+    "buy",
+    "sell",
+    "auto-motives",
+    "cars"
+  ],
+  "author": "oxenprogrammer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oxenprogrammer/Auto-Mart/issues"
+  },
+  "homepage": "https://github.com/oxenprogrammer/Auto-Mart#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "config": "^3.0.1",
+    "cors": "^2.8.5",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "flatted": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "request": "^2.88.0",
+    "swagger-ui-express": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "babel-plugin-istanbul": "^5.1.4",
+    "cross-env": "^5.2.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jasmine": "^2.10.1",
+    "istanbul": "^0.4.5",
+    "jasmine": "^3.4.0",
+    "jasmine-console-reporter": "^3.1.0",
+    "nodemon": "^1.19.0",
+    "nyc": "^14.1.1"
+  }
+}
