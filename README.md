@@ -8,8 +8,8 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 ## Run Test
 - npm test
 
-## For Swagger Documentations on your local host
-- http://localhost:3000/api-docs
+## For Swagger Documentations
+- https://auto-mart-andela.herokuapp.com/api-docs/
 
 ### Technology Used
 - Nodejs
