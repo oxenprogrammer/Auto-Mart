@@ -142,7 +142,9 @@
               }
             }
           }
-        },
+        }
+      },
+      "/car/{id}/": {
         "delete": {
           "summary": "Delete a Specific Car Ad with given ID",
           "tags": [
@@ -353,19 +355,6 @@
           "body_type": {
             "type": "string",
             "uniqueItems": false
-          },
-          "created_on": {
-            "type": "string"
-          },
-          "date_modified": {
-              "type": "string"
-          },
-          "owner": {
-              "type": "number"
-          },
-          "id": {
-              "type": "number",
-              "uniqueItems": true
           }
         }
       },
@@ -381,26 +370,6 @@
           },
           "amount": {
             "type": "float",
-            "uniqueItems": false
-          },
-          "id": {
-            "type": "number",
-            "uniqueItems": true
-          },
-          "buyer": {
-            "type": "number",
-            "uniqueItems": false
-          },
-          "status": {
-            "type": "string",
-            "uniqueItems": false
-          },
-          "created_on": {
-            "type": "string",
-            "uniqueItems": false
-          },
-          "modified_on": {
-            "type": "string",
             "uniqueItems": false
           }
         }
