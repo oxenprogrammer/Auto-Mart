@@ -11,6 +11,8 @@ import routerAuth from './routes/auth';
 import routerCar from './routes/car';
 import routerOrder from './routes/order';
 import routerFlag from './routes/flag';
+require("babel-core/register");
+require("babel-polyfill");
 
 // Set up the express app
 const app = express();
