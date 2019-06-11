@@ -259,4 +259,62 @@ describe('Car Adert', () => {
             });
         });
     });
+
+    describe('PATCH Car Advert', () => {
+        describe('MARK CAR ADVERT AS SOLD && UPDATE PRICE', () => {
+            let car_id;
+            let sold;
+            let newPrice;
+            beforeEach((done) => {
+                model.car = [{
+                    id: 1,
+                    owner: 1,
+                    status: 'available',
+                    state: 'new',
+                    created_on: Date.now(),
+                    price: 200.5,
+                    model: 'vs4-emmisteel',
+                    body_type: 'car',
+                    date_modified: Date.now(), 
+                    manufacturer: 'toyota',  
+                }];
+                sold = {status: 'sold'};
+                newPrice = {price: 300};
+                done();
+            });
+
+            afterEach((done) => {
+                model.car = [];
+                done();
+            });
+
+            it('should mark car as sold', (done) => {
+                car_id = 1;
+                chai.request(server)
+                    .patch(`/api/v1/car/${car_id}/status`)
+                    .send(sold)
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.status.should.equal(200);
+                        res.body.data.should.be.an('object');
+                        done();
+                    });
+            });
+
+            it('should return 400 for bad sold status', (done) => {
+                delete sold.status;
+                chai.request(server)
+                    .patch(`/api/v1/car/${car_id}/status`)
+                    .send(sold)
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(400);
+                        res.body.status.should.equal(400);
+                        res.body.error.should.be.a('string');
+                        done();
+                    });
+            });
+        });
+    });
 });
