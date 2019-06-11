@@ -150,4 +150,60 @@ describe('Car Adert', () => {
             });
         });
     });
+
+    describe('GET Specific Car Advert', () => {
+        let car_id;
+        beforeEach((done) => {
+            model.car = [
+                {
+                    id: 1,
+                    owner: 1,
+                    status: 'sold',
+                    state: 'new',
+                    created_on: Date.now(),
+                    price: 200.5,
+                    model: 'vs4-emmisteel',
+                    body_type: 'car',
+                    date_modified: Date.now(),
+                    
+                },
+            ];
+            done();
+        });
+
+        afterEach((done) => {
+            model.car = [];
+            done();
+        });
+        
+        describe('GET /${id}', () => {
+            it('should return 200 if car exists', (done) => {
+                car_id = 1;
+                chai.request(server)
+                    .get(`/api/v1/car/${car_id}`)
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.status.should.equal(200);
+                        res.body.data.should.be.an('object');
+                        done();
+                    });
+            });
+        });
+
+        describe('GET /${id} not found', () => {
+            it('should return 404 for no specific car', (done) => {
+                car_id = 2;
+                chai.request(server)
+                    .get(`/api/v1/car/${car_id}`)
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(404);
+                        res.body.status.should.equal(404);
+                        res.body.error.should.be.a('string');
+                        done();
+                    });
+            });
+        });
+    });
 });

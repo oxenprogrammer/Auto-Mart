@@ -58,7 +58,8 @@ class Car {
     }
 
     return res.status(200).send({
-      car,
+      status: 200,
+      data: car,
     });
   }
 
