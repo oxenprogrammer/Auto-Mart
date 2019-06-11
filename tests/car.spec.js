@@ -206,4 +206,57 @@ describe('Car Adert', () => {
             });
         });
     });
+
+    describe('POST Car Advert', () => {
+        describe('POST car Advert', () => {
+            let car;
+            beforeEach((done) => {
+                car = {
+                    id: 1,
+                    owner: 1,
+                    status: 'sold',
+                    state: 'new',
+                    created_on: Date.now(),
+                    price: 200.5,
+                    model: 'vs4-emmisteel',
+                    body_type: 'car',
+                    date_modified: Date.now(), 
+                    manufacturer: 'toyota',  
+                };
+                done();
+            });
+
+            afterEach((done) => {
+                model.car = [];
+                done();
+            });
+
+            it('should post car', (done) => {
+                chai.request(server)
+                    .post('/api/v1/car')
+                    .send(car)
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(201);
+                        res.body.status.should.equal(201);
+                        res.body.data.should.be.an('object');
+                        done();
+                    });
+            });
+
+            it('should return 400', (done) => {
+                delete car.price;
+                chai.request(server)
+                    .post('/api/v1/car')
+                    .send(car)
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(400);
+                        res.body.status.should.equal(400);
+                        res.body.error.should.be.a('string');
+                        done();
+                    });
+            });
+        });
+    });
 });
