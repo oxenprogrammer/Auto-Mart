@@ -23,25 +23,25 @@ class Car {
       if (req.query.min_price && req.query.max_price) {
         // eslint-disable-next-line max-len
         const filtered = cars.filter(car => car.price >= req.query.min_price && car.price <= req.query.max_price);
-        res.status(200).send({
+        return res.status(200).send({
           status: 200,
           data: filtered,
         });
       }
 
       if (!cars) {
-        res.status(404).send({
+        return res.status(404).send({
           status: 404,
           error: 'No Car Advert found',
         });
       }
 
-      res.status(200).send({
+      return res.status(200).send({
         status: 200,
         data: cars,
       });
     } else {
-      res.status(200).send({
+      return res.status(200).send({
         status: 200,
         data: model.car,
       });

@@ -7,7 +7,7 @@
 const seller = (req, res, next) => {
   // req.user from authorization
   if (req.user.user_class !== 'SELLER') return res.status(403).send({ status: 403, error: 'Access Denied' });
-  next();
+  return next();
 };
 
 export default seller;

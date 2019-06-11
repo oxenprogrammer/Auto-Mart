@@ -45,8 +45,8 @@ describe('Car Adert', () => {
         });
     });
 
-    describe('GET Car Available Advert', () => {
-        beforeEach(() => {
+    describe('GET Car Available Advert Happy Path', () => {
+        beforeEach((done) => {
             model.car = [
                 {
                     id: 1,
@@ -61,10 +61,12 @@ describe('Car Adert', () => {
                     
                 },
             ];
+            done();
         });
 
-        afterEach(() => {
-            model.car = [];
+        afterEach((done) => {
+            model.car.length = 0;
+            done();
         });
 
         describe('GET /available', () => {
@@ -90,6 +92,59 @@ describe('Car Adert', () => {
                         res.should.have.status(200);
                         res.body.status.should.equal(200);
                         res.body.data.should.be.an('array');
+                        done();
+                    });
+            });
+        });
+    });
+
+    describe('GET Car Available Advert Unhappy Path', () => {
+        beforeEach((done) => {
+            model.car = [
+                {
+                    id: 1,
+                    owner: 1,
+                    status: 'sold',
+                    state: 'new',
+                    created_on: Date.now(),
+                    price: 200.5,
+                    model: 'vs4-emmisteel',
+                    body_type: 'car',
+                    date_modified: Date.now(),
+                    
+                },
+            ];
+            done();
+        });
+
+        afterEach((done) => {
+            model.car.length = 0;
+            done();
+        });
+        
+        describe('GET /available not', () => {
+            it('should return 404 for no car', (done) => {
+                chai.request(server)
+                    .get('/api/v1/car?status=available')
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.status.should.equal(200);
+                        res.body.data.length.should.be.equal(0);
+                        done();
+                    });
+            });
+        });
+
+        describe('GET /not within range', () => {
+            it('should return 404 for no car within range', (done) => {
+                chai.request(server)
+                    .get('/api/v1/car?status=available&min_price=100&max_price=300')
+                    .set('x-auth-token', token)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.status.should.equal(200);
+                        res.body.data.length.should.be.equal(0);
                         done();
                     });
             });
