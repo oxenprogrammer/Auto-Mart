@@ -117,7 +117,7 @@ class Order {
         status: 403,
         error: 'It is illegal to sell someone\'s else car',
       });
-    } else if (carOrder.status === 'accepted' || carOrder.status === 'rejected') {
+    } else if (carOrder.status !== 'pending') {
       return res.status(400).send({
         status: 400,
         error: `This Order has already been ${carOrder.status}`,
