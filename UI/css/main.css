@@ -4,6 +4,9 @@ html body {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    padding: 0;
+    margin: -18px;
+    height: 100%;
 }
 
 * {
@@ -13,6 +16,47 @@ html body {
 .container {
     margin: 5px;
     padding: 5px;
+}
+
+
+.navbar {
+    background: #47A99C;
+    /* overflow: hidden; */
+    height: 63px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    transition: 0.5s ease-out;
+    z-index: 1;
+}
+
+.navbar .logo {
+    width: 10%;
+    height: auto;
+    position: relative;
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.navbar a {
+    display: block;
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar ul {
+    margin: 8px 0 0 0 ;
+    list-style: none;
+}
+
+.navbar a:hover {
+    background: #dddddd;
+    color: #47A99C;
 }
 
 .headings {
@@ -161,6 +205,7 @@ select option {
     width: 100%;
     position: sticky;
     bottom: 0;
+    margin-top: 220px;
 }
 
 .footer a {
@@ -205,6 +250,9 @@ select option {
     .form-box, .post-car-advert {
         width: 100%
     }
+    .navbar .logo {
+        width: 30%;
+    }
 }
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
@@ -214,6 +262,10 @@ select option {
 @media (min-width: 320px) and (max-width: 480px) {
     .form-box, .post-car-advert {
         width: 100%
+    }
+
+    .navbar .logo {
+        width: 30%;
     }
 }
   

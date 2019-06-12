@@ -9,60 +9,70 @@
 </head>
 <body >
    <div class="container">
-       <div class="headings">
-            <h1 class="signup">signup</h1><h1 class="login">login</h1>
-       </div>
-       <div class="form-box" id="signup">
-        <form>
-            <h3>Register</h3>
-            <div class="form-group">
-                <div class="form-control">
-                    <input type="text" name="fullname" id="fullname" placeholder="enter full name" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-control">
-                    <input type="email" name="email" id="email" placeholder="enter email address" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-control">
-                    <input type="password" name="password" id="password" placeholder="enter password" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-control">
-                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="confirm password" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-control">
-                    <label for="usertype">Buyer or Seller</label>
-                    <select name="usertype" id="usertype">
-                        <option value="buyer" selected>Buyer</option>
-                        <option value="seller">Seller</option>
-                    </select>
-                </div>
-            </div>
-            <button class="signup-login" type="submit" onclick="toggleLogin()">Register</button>
-        </form>
-       </div>
-       <div class="form-box" id="login">
-        <form>
-            <h3>login</h3>
-            <div class="form-group">
-                <div class="form-control">
-                    <input type="email" name="email" id="email" placeholder="enter email address" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-control">
-                    <input type="password" name="password" id="password" placeholder="enter password" required>
-                </div>
-            </div>
-            <a href="seller-dashboard.html" class="signup-login">login</a>
-        </form>
-       </div>
+       <main id="main-index">
+            <nav class="navbar">
+                    <img class="logo" src="./img/logo-2.png" alt="logo">
+                    <ul class="nav-item">
+                        <li class="list-item"><a href="#">Login</a></li>
+                        <li class="list-item"><a href="#" onclick="onSideMenu()">Register</a></li>
+                        <li class="list-item"><a onclick="togglePostAdListBuyer()" id="dashboard">Home</a></li>
+                    </ul>
+                </nav>
+               <div class="headings">
+                    <h1 class="signup">signup</h1><h1 class="login">login</h1>
+               </div>
+               <div class="form-box" id="signup">
+                <form>
+                    <h3>Register</h3>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="text" name="fullname" id="fullname" placeholder="enter full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="email" name="email" id="email" placeholder="enter email address" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="password" name="password" id="password" placeholder="enter password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="confirm password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="usertype">Buyer or Seller</label>
+                            <select name="usertype" id="usertype">
+                                <option value="buyer" selected>Buyer</option>
+                                <option value="seller">Seller</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="signup-login" type="submit" onclick="toggleLogin()">Register</button>
+                </form>
+               </div>
+               <div class="form-box" id="login">
+                <form>
+                    <h3>login</h3>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="email" name="email" id="email" placeholder="enter email address" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <input type="password" name="password" id="password" placeholder="enter password" required>
+                        </div>
+                    </div>
+                    <a href="seller-dashboard.html" class="signup-login">login</a>
+                </form>
+               </div>
+       </main>
        <footer class="footer">
             <a href="./buyer-dashboard.html">Buyer's Dashboard</a>
             <a href="./seller-dashboard.html">Seller's Dashboard</a>
