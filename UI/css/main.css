@@ -31,12 +31,11 @@ html body {
 }
 
 .navbar .logo {
-    width: 10%;
+    width: 15%;
     height: auto;
     position: relative;
     float: left;
     margin-left: 20px;
-    margin-top: 10px;
 }
 
 .navbar a {
