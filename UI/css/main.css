@@ -49,6 +49,13 @@ html body {
     font-size: 17px;
 }
 
+.brand {
+    margin-right: 900px;
+    font-size: 36px;
+    color: #ffdf00;
+    padding-top: 10px;
+}
+
 .navbar ul {
     margin: 8px 0 0 0 ;
     list-style: none;
@@ -228,6 +235,9 @@ select option {
     .form-box, .post-car-advert{
         width: 100%
     }
+    .brand {
+        display: none;
+    }
 }
 
 /* 
@@ -238,6 +248,9 @@ select option {
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     .form-box, .post-car-advert {
         width: 100%
+    }
+    .brand {
+        display: none;
     }
 }
 
@@ -253,6 +266,9 @@ select option {
     .navbar .logo {
         width: 30%;
     }
+    .brand {
+        display: none;
+    }
 }
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
@@ -266,6 +282,9 @@ select option {
 
     .navbar .logo {
         width: 30%;
+    }
+    .brand {
+        display: none;
     }
 }
   
