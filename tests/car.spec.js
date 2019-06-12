@@ -417,11 +417,12 @@ describe('Car Adert', () => {
             it('should return 404 if car is not exist', (done) => {
                 car_id = 2;
                 chai.request(server)
-                    .delete(`/api/v1/car${car_id}/`)
+                    .delete(`/api/v1/car/${car_id}/`)
                     .set('x-auth-token', token)
                     .end((err, res) => {
                         res.should.have.status(404);
-                        // res.body.status.should.equal(404);
+                        res.body.status.should.equal(404);
+                        res.body.error.should.be.a('string');
                         done();
                     });
             });

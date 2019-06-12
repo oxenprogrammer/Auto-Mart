@@ -7,12 +7,6 @@ import model from '../../db/db';
 import filterValue from '../../middleware/helper';
 
 class Car {
-  // getCars(req, res) {
-  //   res.status(200).send({
-  //     status: 200,
-  //     data: model.car,
-  //   });
-  // }
 
   getCars(req, res) {
     const queryUnsold = req.query.status;
@@ -26,13 +20,6 @@ class Car {
         return res.status(200).send({
           status: 200,
           data: filtered,
-        });
-      }
-
-      if (!cars) {
-        return res.status(404).send({
-          status: 404,
-          error: 'No Car Advert found',
         });
       }
 
@@ -187,15 +174,10 @@ class Car {
           data: '​ Car Ad successfully deleted',
         });
       }
-      return res.status(400).send({
-        status: 400,
-        data: '​Something went wrong',
+      return res.status(404).send({
+        status: 404,
+        error: `​Car with ID ${req.params.id} not found`,
       });
-    });
-
-    return res.status(404).send({
-      status: 404,
-      error: `Car with ID ${req.params.id} not found`,
     });
   }
 }
