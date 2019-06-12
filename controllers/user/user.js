@@ -19,10 +19,11 @@ class User {
 
   async signUp(req, res) {
     let emailExist = '';
-    // eslint-disable-next-line array-callback-return
+
     model.user.map((oneUser) => {
       emailExist = oneUser.email;
     });
+    
     if (req.body.email === emailExist) {
       return res.status(409).send({
         status: 409,
