@@ -248,6 +248,9 @@ body {
     position: relative;
     transition: color 0.1s ease;
 }
+.modal-footer .cancel {
+    background: #444342;
+}
 .modal-footer .btn:hover {
     background: rgb(42, 117, 107);
     cursor: pointer;
@@ -328,9 +331,18 @@ transition: transform 1s ease-out;
     padding: 20px 0;
 }
 
+.modal-body input {
+    width: 360px;
+}
+
 .modal-header,
 .modal-footer {
-padding: 10px 20px;
+  padding: 10px 20px;
+}
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
 .modal-header {
 border-bottom: #eee solid 1px;
@@ -375,6 +387,14 @@ text-align: right;
     #main .car-ad-list tr:nth-child(2) {
       border-top: none;
     }
+
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 180px;
+    }
 }
 
 @media screen and (min-width: 600px) {
@@ -401,6 +421,13 @@ text-align: right;
      #main .car-ad-list td {
       padding: 1em !important;
     }
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 180px;
+    }
   }
 
 @media(max-width: 568px) {
@@ -410,6 +437,13 @@ text-align: right;
     .navbar {
         width: 100%;
     }
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 180px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
@@ -418,5 +452,12 @@ text-align: right;
     }
     #main .car-ad-list{
         width: 100%;
+    }
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 280px;
     }
 }
