@@ -124,9 +124,21 @@ body {
 
 #main .car-ad-list{
     margin: auto;
-    min-width: 300px;
-    max-width: 100%;
+    width: 1000px;
+    /* max-width: 100%; */
     border-collapse: collapse;
+}
+
+#main .car-ad-list tr td img {
+    /* border: 1px solid #ddd; */
+    border-radius: 4px;
+    padding: 5px;
+    width: 60px;
+}
+
+#main .car-ad-list tr td img:hover {
+    box-shadow: 0 0 2px 1px rgba(239, 242, 243, 0.5);
+    background: #aaa;
 }
 
 #main .car-ad-list tr:first-child {
