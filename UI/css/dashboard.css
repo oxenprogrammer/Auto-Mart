@@ -250,6 +250,7 @@ body {
 }
 .modal-footer .cancel {
     background: #444342;
+    margin-right: 10px;
 }
 .modal-footer .btn:hover {
     background: rgb(42, 117, 107);
@@ -333,6 +334,7 @@ transition: transform 1s ease-out;
 
 .modal-body input {
     width: 360px;
+    margin-bottom: 15px;
 }
 
 .modal-header,
@@ -341,7 +343,7 @@ transition: transform 1s ease-out;
 }
 .modal-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
 }
 .modal-header {
@@ -351,10 +353,7 @@ border-bottom: #eee solid 1px;
 font-size: 20px;
 color: #008081;
 }
-.modal-footer {
-border-top: #eee solid 1px;
-text-align: right;
-}
+
 
 #main .search {
     display: flex;
