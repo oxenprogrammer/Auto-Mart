@@ -8,6 +8,7 @@ import chaiHttp from 'chai-http';
 import jsonwebtoken from 'jsonwebtoken';
 import server from '../server';
 import model from '../db/db';
+import user from '../models/user';
 
 // Configure chai
 chai.use(chaiHttp);
@@ -16,18 +17,8 @@ chai.should();
 describe('Car Adert Purchase Order', () => {
     let token;
     before(() => {
-        const user = {
-            id: 1,
-            email: 'emmy1000okello@gmail.com',
-            first_name: 'emanuel',
-            last_name: 'okello',
-            password: '123456',
-            address: 'kampala',
-            is_admin: true,
-            user_class: 'BUYER',
-          };
-            
-        token = jsonwebtoken.sign({ id: user.id, is_admin: user.is_admin, user_class: user.user_class }, 'supertopsecret', { expiresIn: '24h' });
+        const myUser = user.buyer;
+        token = jsonwebtoken.sign({ id: myUser.id, is_admin: myUser.is_admin, user_class: myUser.user_class }, 'supertopsecret', { expiresIn: '24h' });
     });
 
     describe('GET Car Advert Order', () => {
