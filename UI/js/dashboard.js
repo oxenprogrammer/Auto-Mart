@@ -38,7 +38,7 @@ const togglePostAdList = () => {
     postAd.style.display = 'none';
     purchaseOrderList.style.display = 'none';
     postAdList.style.display = 'flex';
-    postAdList.style.marginLeft = '250px';
+    // postAdList.style.marginLeft = '250px';
 };
 
 const togglePostAdListBuyer = () => {

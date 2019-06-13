@@ -124,9 +124,21 @@ body {
 
 #main .car-ad-list{
     margin: auto;
-    min-width: 300px;
-    max-width: 100%;
+    width: 1000px;
+    /* max-width: 100%; */
     border-collapse: collapse;
+}
+
+#main .car-ad-list tr td img {
+    /* border: 1px solid #ddd; */
+    border-radius: 4px;
+    padding: 5px;
+    width: 60px;
+}
+
+#main .car-ad-list tr td img:hover {
+    box-shadow: 0 0 2px 1px rgba(239, 242, 243, 0.5);
+    background: #aaa;
 }
 
 #main .car-ad-list tr:first-child {
@@ -236,6 +248,10 @@ body {
     position: relative;
     transition: color 0.1s ease;
 }
+.modal-footer .cancel {
+    background: #444342;
+    margin-right: 10px;
+}
 .modal-footer .btn:hover {
     background: rgb(42, 117, 107);
     cursor: pointer;
@@ -246,6 +262,10 @@ body {
 }
 .modal-footer #delete-ad:hover {
     background: red;
+}
+
+.modal-header h2 {
+    text-align: center;
 }
 
 .modal-header .btn-close {
@@ -290,7 +310,7 @@ position: fixed;
 left: 50%;
 top: -100%;
 z-index: 11;
-width: 360px;
+width: 460px;
 -webkit-transform: translate(0, -500%);
 -ms-transform: translate(0, -500%);
 transform: translate(0, -500%);
@@ -300,11 +320,31 @@ transform: translate(0, -500%);
 transition: transform 1s ease-out;
 }
 .modal-body {
-padding: 20px;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    flex-direction: row;
 }
+.modal-body img{
+    /* flex-basis: 60%; */
+    width: 50%;
+    height: auto;
+    padding: 20px 0;
+}
+
+.modal-body input {
+    width: 360px;
+    margin-bottom: 15px;
+}
+
 .modal-header,
 .modal-footer {
-padding: 10px 20px;
+  padding: 10px 20px;
+}
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 .modal-header {
 border-bottom: #eee solid 1px;
@@ -313,10 +353,7 @@ border-bottom: #eee solid 1px;
 font-size: 20px;
 color: #008081;
 }
-.modal-footer {
-border-top: #eee solid 1px;
-text-align: right;
-}
+
 
 #main .search {
     display: flex;
@@ -349,6 +386,14 @@ text-align: right;
     #main .car-ad-list tr:nth-child(2) {
       border-top: none;
     }
+
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 180px;
+    }
 }
 
 @media screen and (min-width: 600px) {
@@ -375,6 +420,13 @@ text-align: right;
      #main .car-ad-list td {
       padding: 1em !important;
     }
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 180px;
+    }
   }
 
 @media(max-width: 568px) {
@@ -383,5 +435,28 @@ text-align: right;
     }
     .navbar {
         width: 100%;
+    }
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 180px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    body {
+        overflow-x: visible;
+    }
+    #main .car-ad-list{
+        width: 100%;
+    }
+    .modal-dialog {
+        width: 320px;
+        left: 65%;
+    }
+    .modal-body input {
+        width: 280px;
     }
 }
