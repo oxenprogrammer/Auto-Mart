@@ -9,6 +9,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import server from '../server';
 import model from '../db/db';
 import user from '../models/user';
+import car from '../models/car';
 
 // Configure chai
 chai.use(chaiHttp);
@@ -18,7 +19,6 @@ describe('Car Adert', () => {
     let token;
     before(() => {
         const myUser = user.user;
-            
         token = jsonwebtoken.sign({ id: myUser.id, is_admin: myUser.is_admin, user_class: myUser.user_class }, 'supertopsecret', { expiresIn: '24h' });
     });
     describe('GET Car Advert', () => {
@@ -39,20 +39,7 @@ describe('Car Adert', () => {
 
     describe('GET Car Available Advert Happy Path', () => {
         beforeEach((done) => {
-            model.car = [
-                {
-                    id: 1,
-                    owner: 1,
-                    status: 'available',
-                    state: 'new',
-                    created_on: Date.now(),
-                    price: 200.5,
-                    model: 'vs4-emmisteel',
-                    body_type: 'car',
-                    date_modified: Date.now(),
-                    
-                },
-            ];
+            model.car.push(car.goodCar);
             done();
         });
 
@@ -92,20 +79,8 @@ describe('Car Adert', () => {
 
     describe('GET Car Available Advert Unhappy Path', () => {
         beforeEach((done) => {
-            model.car = [
-                {
-                    id: 1,
-                    owner: 1,
-                    status: 'sold',
-                    state: 'new',
-                    created_on: Date.now(),
-                    price: 200.5,
-                    model: 'vs4-emmisteel',
-                    body_type: 'car',
-                    date_modified: Date.now(),
-                    
-                },
-            ];
+            car.goodCar.status = 'sold';
+            model.car.push(car.goodCar);
             done();
         });
 
@@ -146,20 +121,7 @@ describe('Car Adert', () => {
     describe('GET Specific Car Advert', () => {
         let car_id;
         beforeEach((done) => {
-            model.car = [
-                {
-                    id: 1,
-                    owner: 1,
-                    status: 'sold',
-                    state: 'new',
-                    created_on: Date.now(),
-                    price: 200.5,
-                    model: 'vs4-emmisteel',
-                    body_type: 'car',
-                    date_modified: Date.now(),
-                    
-                },
-            ];
+            model.car.push(car.goodCar);
             done();
         });
 
@@ -201,20 +163,9 @@ describe('Car Adert', () => {
 
     describe('POST Car Advert', () => {
         describe('POST car Advert', () => {
-            let car;
+            let myCar;
             beforeEach((done) => {
-                car = {
-                    id: 1,
-                    owner: 1,
-                    status: 'sold',
-                    state: 'new',
-                    created_on: Date.now(),
-                    price: 200.5,
-                    model: 'vs4-emmisteel',
-                    body_type: 'car',
-                    date_modified: Date.now(), 
-                    manufacturer: 'toyota',  
-                };
+                myCar = car.goodCar;
                 done();
             });
 
@@ -226,7 +177,7 @@ describe('Car Adert', () => {
             it('should post car', (done) => {
                 chai.request(server)
                     .post('/api/v1/car')
-                    .send(car)
+                    .send(myCar)
                     .set('x-auth-token', token)
                     .end((err, res) => {
                         res.should.have.status(201);
@@ -237,10 +188,10 @@ describe('Car Adert', () => {
             });
 
             it('should return 400', (done) => {
-                delete car.price;
+                delete car.goodCar.price;
                 chai.request(server)
                     .post('/api/v1/car')
-                    .send(car)
+                    .send(myCar)
                     .set('x-auth-token', token)
                     .end((err, res) => {
                         res.should.have.status(400);
@@ -258,18 +209,7 @@ describe('Car Adert', () => {
             let sold;
             let newPrice;
             beforeEach((done) => {
-                model.car = [{
-                    id: 1,
-                    owner: 1,
-                    status: 'available',
-                    state: 'new',
-                    created_on: Date.now(),
-                    price: 200.5,
-                    model: 'vs4-emmisteel',
-                    body_type: 'car',
-                    date_modified: Date.now(), 
-                    manufacturer: 'toyota',  
-                }];
+                model.car.push(car.goodCar);
                 sold = {status: 'sold'};
                 newPrice = {price: 300};
                 done();
@@ -370,21 +310,9 @@ describe('Car Adert', () => {
 
     describe('DELETE Car Advert', () => {
         describe('DELETE car Advert', () => {
-            let car;
             let car_id;
             beforeEach((done) => {
-                model.car = [{
-                    id: 1,
-                    owner: 1,
-                    status: 'sold',
-                    state: 'new',
-                    created_on: Date.now(),
-                    price: 200.5,
-                    model: 'vs4-emmisteel',
-                    body_type: 'car',
-                    date_modified: Date.now(), 
-                    manufacturer: 'toyota',  
-                }];
+                model.car.push(car.goodCar);
                 done();
             });
 
