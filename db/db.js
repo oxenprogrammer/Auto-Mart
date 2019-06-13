@@ -14,5 +14,5 @@ export default {
   user,
   car,
   order,
-  flag,
+  flag
 };

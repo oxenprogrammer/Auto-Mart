@@ -7,7 +7,6 @@ import model from '../../db/db';
 import filterValue from '../../middleware/helper';
 
 class Car {
-
   getCars(req, res) {
     const queryUnsold = req.query.status;
 
@@ -16,23 +15,24 @@ class Car {
 
       if (req.query.min_price && req.query.max_price) {
         // eslint-disable-next-line max-len
-        const filtered = cars.filter(car => car.price >= req.query.min_price && car.price <= req.query.max_price);
+        const filtered = cars.filter(
+          car => car.price >= req.query.min_price && car.price <= req.query.max_price
+        );
         return res.status(200).send({
           status: 200,
-          data: filtered,
+          data: filtered
         });
       }
 
       return res.status(200).send({
         status: 200,
-        data: cars,
-      });
-    } else {
-      return res.status(200).send({
-        status: 200,
-        data: model.car,
+        data: cars
       });
     }
+    return res.status(200).send({
+      status: 200,
+      data: model.car
+    });
   }
 
   getCar(req, res) {
@@ -40,13 +40,13 @@ class Car {
     if (!car) {
       return res.status(404).send({
         status: 404,
-        error: `Vehicle with ID ${req.params.id} not found`,
+        error: `Vehicle with ID ${req.params.id} not found`
       });
     }
 
     return res.status(200).send({
       status: 200,
-      data: car,
+      data: car
     });
   }
 
@@ -60,7 +60,7 @@ class Car {
     ) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, Internal Server Error',
+        error: 'Something went wrong, Internal Server Error'
       });
     }
 
@@ -68,7 +68,6 @@ class Car {
     if (model.car.length > 0) {
       lastCarId = model.car[model.car.length - 1].id;
     }
-
 
     const carAd = {
       id: lastCarId + 1,
@@ -80,7 +79,7 @@ class Car {
       manufacturer: req.body.manufacturer,
       model: req.body.model,
       body_type: req.body.body_type,
-      date_modified: Date.now(),
+      date_modified: Date.now()
     };
 
     model.car.push(carAd);
@@ -95,8 +94,8 @@ class Car {
         model: carAd.model,
         price: carAd.price,
         state: carAd.state,
-        status: carAd.status,
-      },
+        status: carAd.status
+      }
     });
   }
 
@@ -105,12 +104,13 @@ class Car {
     if (!carAd) {
       return res.status(404).send({
         status: 404,
-        error: `Vehicle with ID ${req.params.id} not found`,
+        error: `Vehicle with ID ${req.params.id} not found`
       });
-    } else if (!req.body.status) {
+    }
+    if (!req.body.status) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, internal server errror',
+        error: 'Something went wrong, internal server errror'
       });
     }
 
@@ -127,8 +127,8 @@ class Car {
         model: carAd.model,
         price: carAd.price,
         state: carAd.state,
-        status: carAd.status,
-      },
+        status: carAd.status
+      }
     });
   }
 
@@ -137,12 +137,13 @@ class Car {
     if (!carAd) {
       return res.status(404).send({
         status: 404,
-        error: `Vehicle with ID ${req.params.id} not found`,
+        error: `Vehicle with ID ${req.params.id} not found`
       });
-    } else if (!req.body.price) {
+    }
+    if (!req.body.price) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, internal server errror',
+        error: 'Something went wrong, internal server errror'
       });
     }
 
@@ -159,8 +160,8 @@ class Car {
         model: carAd.model,
         price: carAd.price,
         state: carAd.state,
-        status: carAd.status,
-      },
+        status: carAd.status
+      }
     });
   }
 
@@ -171,12 +172,12 @@ class Car {
         model.car.splice(index, 1);
         return res.status(202).send({
           status: 202,
-          data: '​ Car Ad successfully deleted',
+          data: '​ Car Ad successfully deleted'
         });
       }
       return res.status(404).send({
         status: 404,
-        error: `​Car with ID ${req.params.id} not found`,
+        error: `​Car with ID ${req.params.id} not found`
       });
     });
   }

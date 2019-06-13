@@ -10,7 +10,7 @@ class Flag {
     res.status(200).send({
       success: 'true',
       message: 'successfully retrieved flags',
-      flags: model.flag,
+      flags: model.flag
     });
   }
 }

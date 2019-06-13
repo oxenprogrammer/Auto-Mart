@@ -2,7 +2,6 @@
 /* jshint -W097 */
 /* jshint node: true */
 
-
 // eslint-disable-next-line consistent-return
 const admin = (req, res, next) => {
   // req.user from authorization
