@@ -5,17 +5,18 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import register from 'babel-core/register';
+import babelPolyfill from 'babel-polyfill';
 import swaggerUI from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
 import routerAuth from './routes/auth';
 import routerCar from './routes/car';
 import routerOrder from './routes/order';
 import routerFlag from './routes/flag';
-require("babel-core/register");
-require("babel-polyfill");
+
 
 // Set up the express app
-const app = express();
+const app = express(register, babelPolyfill);
 
 // Middleware Use
 app.use(bodyParser.json());
