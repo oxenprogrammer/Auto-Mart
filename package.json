@@ -6,8 +6,7 @@
   "scripts": {
     "test": "nyc mocha --compilers js:babel-core/register --require babel-polyfill tests/*.spec.js --exit",
     "start": "nodemon server.js --exec babel-node --",
-    "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js",
-    "test-cover": "istanbul cover --include-all-sources spec/support/specs.js && istanbul check-coverage"
+    "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +30,6 @@
     "body-parser": "^1.19.0",
     "config": "^3.0.1",
     "cors": "^2.8.5",
-    "eslint": "^4.19.1",
     "express": "^4.16.3",
     "flatted": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -51,15 +49,13 @@
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jasmine": "^2.10.1",
-    "istanbul": "^0.4.5",
-    "jasmine": "^3.4.0",
-    "jasmine-console-reporter": "^3.1.0",
     "mocha": "^5.1.1",
     "nodemon": "^1.19.0",
-    "nyc": "^14.1.1"
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2"
   },
   "engines": {
     "node": "8.10.0"
