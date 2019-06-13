@@ -260,6 +260,10 @@ body {
     background: red;
 }
 
+.modal-header h2 {
+    text-align: center;
+}
+
 .modal-header .btn-close {
     color: #aaa;
     font-size: 30px;
@@ -302,7 +306,7 @@ position: fixed;
 left: 50%;
 top: -100%;
 z-index: 11;
-width: 360px;
+width: 460px;
 -webkit-transform: translate(0, -500%);
 -ms-transform: translate(0, -500%);
 transform: translate(0, -500%);
@@ -312,8 +316,18 @@ transform: translate(0, -500%);
 transition: transform 1s ease-out;
 }
 .modal-body {
-padding: 20px;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    flex-direction: row;
 }
+.modal-body img{
+    /* flex-basis: 60%; */
+    width: 50%;
+    height: auto;
+    padding: 20px 0;
+}
+
 .modal-header,
 .modal-footer {
 padding: 10px 20px;
@@ -394,6 +408,15 @@ text-align: right;
         display: none;
     }
     .navbar {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    body {
+        overflow-x: visible;
+    }
+    #main .car-ad-list{
         width: 100%;
     }
 }
