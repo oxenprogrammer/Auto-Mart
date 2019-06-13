@@ -7,8 +7,11 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import jsonwebtoken from 'jsonwebtoken';
 import server from '../server';
+import order from '../models/order';
 import model from '../db/db';
 import user from '../models/user';
+import car from '../models/car';
+
 
 // Configure chai
 chai.use(chaiHttp);
@@ -16,8 +19,9 @@ chai.should();
 
 describe('Car Adert Purchase Order', () => {
     let token;
+    let myUser;
     before(() => {
-        const myUser = user.buyer;
+        myUser = user.buyer;
         token = jsonwebtoken.sign({ id: myUser.id, is_admin: myUser.is_admin, user_class: myUser.user_class }, 'supertopsecret', { expiresIn: '24h' });
     });
 
@@ -38,31 +42,11 @@ describe('Car Adert Purchase Order', () => {
     });
 
     describe('POST Purchase Order', () => {
-        let order;
+        let myOrder;
         beforeEach((done) => {
 
-            model.car = [{
-                id: 1,
-                owner: 1,
-                status: 'sold',
-                state: 'new',
-                created_on: Date.now(),
-                price: 200.5,
-                model: 'vs4-emmisteel',
-                body_type: 'car',
-                date_modified: Date.now(), 
-                manufacturer: 'toyota',  
-            }];
-
-            order = {
-                id: 1,
-                buyer: 2,
-                car_id: 1,
-                created_on: Date.now(),
-                amount: 200.05,
-                status: 'pending',
-                date_modified: Date.now(),
-            };
+            model.car.push(car.goodCar);
+            myOrder = order.goodOrder;
 
             done();
         });
@@ -76,7 +60,7 @@ describe('Car Adert Purchase Order', () => {
         it('should post purchase order', (done) => {
             chai.request(server)
                 .post('/api/v1/order')
-                .send(order)
+                .send(myOrder)
                 .set('x-auth-token', token)
                 .end((err, res) => {
                     res.should.have.status(201);
@@ -87,10 +71,10 @@ describe('Car Adert Purchase Order', () => {
         });
 
         it('should return 400 for purchase order', (done) => {
-            delete order.car_id;
+            delete myOrder.car_id;
             chai.request(server)
                 .post('/api/v1/order')
-                .send(order)
+                .send(myOrder)
                 .set('x-auth-token', token)
                 .end((err, res) => {
                     res.should.have.status(400);
@@ -101,10 +85,10 @@ describe('Car Adert Purchase Order', () => {
         });
 
         it('should return 404 for purchase order', (done) => {
-            order.car_id = 2;
+            myOrder.car_id = 2;
             chai.request(server)
                 .post('/api/v1/order')
-                .send(order)
+                .send(myOrder)
                 .set('x-auth-token', token)
                 .end((err, res) => {
                     res.should.have.status(404);
@@ -120,15 +104,7 @@ describe('Car Adert Purchase Order', () => {
 
         beforeEach((done) => {
 
-            model.order = [{
-                id: 1,
-                buyer: 2,
-                car_id: 1,
-                created_on: Date.now(),
-                amount: 200.05,
-                status: 'pending',
-                date_modified: Date.now(),
-            }];
+            model.order.push(order.goodOrder);
             amount = {amount: 219.5};
 
             done();
@@ -184,15 +160,8 @@ describe('Car Adert Purchase Order', () => {
 
         describe('ACCEPTED/REJECTED', () => {
             beforeEach((done) => {
-                model.order = [{
-                    id: 1,
-                    buyer: 2,
-                    car_id: 1,
-                    created_on: Date.now(),
-                    amount: 200.05,
-                    status: 'sold',
-                    date_modified: Date.now(),
-                }];
+                order.goodOrder.status = 'accepted';
+                model.order.push(order.goodOrder);
                 done();
             });
 
@@ -218,47 +187,28 @@ describe('Car Adert Purchase Order', () => {
     });
 
     describe('Accept/Reject Purchase Order', () => {
-
         let acceptReject;
-        let user;
+        let seller;
 
         beforeEach((done) => {
-            model.car = [{
-                id: 1,
-                owner: 1,
-                status: 'available',
-                state: 'new',
-                created_on: Date.now(),
-                price: 200.5,
-                model: 'vs4-emmisteel',
-                body_type: 'car',
-                date_modified: Date.now(), 
-                manufacturer: 'toyota',  
-            }];
+            model.car.push(car.goodCar);
 
-            model.order = [{
-                id: 1,
-                buyer: 2,
-                car_id: 1,
-                created_on: Date.now(),
-                amount: 200.05,
-                status: 'pending',
-                date_modified: Date.now(),
-            }];
+            model.order = [
+                {
+                    id: 1,
+                    buyer: 2,
+                    car_id: 1,
+                    created_on: Date.now(),
+                    amount: 200.05,
+                    status: 'pending',
+                    date_modified: Date.now(),
+                }
+            ];
             acceptReject = {status: 'accepted'};
 
-            user = {
-                id: 1,
-                email: 'emmy1000okello@gmail.com',
-                first_name: 'emanuel',
-                last_name: 'okello',
-                password: '123456',
-                address: 'kampala',
-                is_admin: true,
-                user_class: 'SELLER',
-              };
+            seller = user.user;
                 
-            token = jsonwebtoken.sign({ id: user.id, is_admin: user.is_admin, user_class: user.user_class }, 'supertopsecret', { expiresIn: '24h' });
+            token = jsonwebtoken.sign({ id: seller.id, is_admin: seller.is_admin, user_class: seller.user_class }, 'supertopsecret', { expiresIn: '24h' });
 
             done();
         });
@@ -314,7 +264,7 @@ describe('Car Adert Purchase Order', () => {
 
         it('should return 403 for not car owner', (done) => {
             const order_id = 1;
-            token = jsonwebtoken.sign({ id: 2, is_admin: user.is_admin, user_class: user.user_class }, 'supertopsecret', { expiresIn: '24h' });
+            token = jsonwebtoken.sign({ id: 2, is_admin: seller.is_admin, user_class: seller.user_class }, 'supertopsecret', { expiresIn: '24h' });
             chai.request(server)
                 .patch(`/api/v1/order/${order_id}/status`)
                 .send(acceptReject)
