@@ -9,8 +9,8 @@ function onSideMenu() {
     } else {
         main.style.marginLeft = '120px';
     }
-    const navbar = document.querySelector('.navbar');
-    navbar.style.marginLeft = '250px';
+    // const navbar = document.querySelector('.navbar');
+    // navbar.style.marginLeft = '250px';
 }
 
 function offSideMenu() {

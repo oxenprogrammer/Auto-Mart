@@ -31,37 +31,6 @@ body {
     margin-top: 5px;
 }
 
-.navbar {
-    background: #47A99C;
-    overflow: hidden;
-    height: 63px;
-    width: 100%;
-    position: sticky;
-    top: 0;
-    transition: 0.5s ease-out;
-    z-index: 1;
-}
-
-.navbar a {
-    display: block;
-    float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.navbar ul {
-    margin: 8px 0 0 0 ;
-    list-style: none;
-}
-
-.navbar a:hover {
-    background: #dddddd;
-    color: #47A99C;
-}
-
 .side-nav {
     height: 100%;
     width: 0%;
