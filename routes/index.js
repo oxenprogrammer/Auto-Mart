@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* jshint esversion: 8 */
 /* jshint -W097 */
 /* jshint node: true */
