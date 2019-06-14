@@ -8,17 +8,31 @@ export default {
   // user SignUp
   validateSignUp: field => {
     const schema = Joi.object().keys({
-      first_name: Joi.string().required(),
-      last_name: Joi.string().required(),
+      first_name: Joi.string()
+        .strict()
+        .trim()
+        .required(),
+      last_name: Joi.string()
+        .strict()
+        .trim()
+        .required(),
       email: Joi.string()
+        .strict()
+        .trim()
         .email({ minDomainAtoms: 2 })
         .required(),
       password: Joi.string()
         .min(6)
         .max(30)
         .required(),
-      user_class: Joi.string().required(),
-      address: Joi.string().required()
+      user_class: Joi.string()
+        .strict()
+        .trim()
+        .required(),
+      address: Joi.string()
+        .strict()
+        .trim()
+        .required()
     });
     return Joi.validate(field, schema);
   }

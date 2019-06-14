@@ -8,11 +8,23 @@ export default {
   // car advert required fields
   validateCar: field => {
     const schema = Joi.object().keys({
-      state: Joi.string().required(),
-      manufacturer: Joi.string().required(),
+      state: Joi.string()
+        .strict()
+        .trim()
+        .required(),
+      manufacturer: Joi.string()
+        .strict()
+        .trim()
+        .required(),
       price: Joi.number().required(),
-      model: Joi.string().required(),
-      body_type: Joi.string().required()
+      model: Joi.string()
+        .strict()
+        .trim()
+        .required(),
+      body_type: Joi.string()
+        .strict()
+        .trim()
+        .required()
     });
     return Joi.validate(field, schema);
   }
