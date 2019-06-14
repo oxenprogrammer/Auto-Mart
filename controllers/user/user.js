@@ -73,13 +73,7 @@ class User {
       .send({
         status: 201,
         data: {
-          token,
-          id: newUser.id,
-          first_name: newUser.first_name,
-          last_name: newUser.last_name,
-          email: newUser.email,
-          is_admin: newUser.is_admin,
-          password: newUser.password
+          token
         }
       });
   }
@@ -113,13 +107,7 @@ class User {
       .send({
         status: 200,
         data: {
-          token,
-          id: userExists.id,
-          first_name: userExists.first_name,
-          last_name: userExists.last_name,
-          email: userExists.email,
-          is_admin: userExists.is_admin,
-          user_class: userExists.user_class
+          token
         }
       });
   }
