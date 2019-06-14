@@ -174,6 +174,7 @@ class Car {
       }
       return res.status(404).send({
         status: 404,
+        // eslint-disable-next-line no-irregular-whitespace
         error: `​Car with ID ${req.params.id} not found`
       });
     });

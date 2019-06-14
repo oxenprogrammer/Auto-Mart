@@ -5,6 +5,7 @@
 
 import model from '../../db/db';
 import filterValue from '../../middleware/helper';
+import orderValidator from '../../helper/orderValidator';
 
 class Order {
   getOrders(req, res) {
@@ -15,10 +16,12 @@ class Order {
   }
 
   postCarOrder(req, res) {
-    if (!req.body.car_id || !req.body.amount) {
+    const field = req.body;
+    const { error } = orderValidator.validateOrder(field);
+    if (error) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, Internal Server Error'
+        error: error.details.map(data => data.message).toString()
       });
     }
 
