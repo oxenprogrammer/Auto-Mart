@@ -13,4 +13,7 @@ let goodOrder = {
   date_modified: Date.now()
 };
 
-export default { goodOrder };
+// eslint-disable-next-line prefer-const
+let realOrder = { car_id: 1, amount: 200 };
+
+export default { goodOrder, realOrder };

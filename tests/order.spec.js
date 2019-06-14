@@ -51,7 +51,7 @@ describe('Car Adert Purchase Order', () => {
     let myOrder;
     beforeEach(done => {
       model.car.push(car.goodCar);
-      myOrder = order.goodOrder;
+      myOrder = order.realOrder;
 
       done();
     });
@@ -92,11 +92,11 @@ describe('Car Adert Purchase Order', () => {
     });
 
     it('should return 404 for purchase order', done => {
-      myOrder.car_id = 2;
+      order.realOrder.car_id = 2;
       chai
         .request(server)
         .post('/api/v1/order')
-        .send(myOrder)
+        .send(order.realOrder)
         .set('x-auth-token', token)
         .end((err, res) => {
           res.should.have.status(404);
