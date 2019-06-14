@@ -15,7 +15,7 @@ import routerOrder from './routes/order';
 import routerFlag from './routes/flag';
 
 
-// Set up the express app
+// Set up the express app here
 const app = express(register, babelPolyfill);
 
 // Middleware Use
