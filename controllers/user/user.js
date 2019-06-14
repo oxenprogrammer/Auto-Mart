@@ -7,6 +7,7 @@ import bcryptjs from 'bcryptjs';
 import jsonwebtoken from 'jsonwebtoken';
 import model from '../../db/db';
 import filterValue from '../../middleware/helper';
+import userValidator from '../../helper/userValidator';
 
 class User {
   getUsers(req, res) {
@@ -18,6 +19,8 @@ class User {
   }
 
   async signUp(req, res) {
+    const field = req.body;
+    const { error } = userValidator.validateSignUp(field);
     let emailExist = '';
 
     // eslint-disable-next-line array-callback-return
@@ -31,17 +34,10 @@ class User {
         error: `user with email ${req.body.email} exists`
       });
       // eslint-disable-next-line no-else-return
-    } else if (
-      !req.body.email ||
-      !req.body.first_name ||
-      !req.body.last_name ||
-      !req.body.password ||
-      !req.body.address ||
-      !req.body.user_class
-    ) {
+    } else if (error) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, Internal Server Error'
+        error: error.details.map(data => data.message).toString()
       });
     }
     let lastUserId = 0;

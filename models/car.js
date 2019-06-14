@@ -16,4 +16,13 @@ let goodCar = {
   manufacturer: 'toyota'
 };
 
-export default { goodCar };
+// eslint-disable-next-line prefer-const
+let newCar = {
+  state: 'new',
+  price: 123,
+  manufacturer: 'ghfhfh',
+  model: 'dfeee',
+  body_type: 'car'
+};
+
+export default { goodCar, newCar };

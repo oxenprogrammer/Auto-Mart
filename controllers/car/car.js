@@ -5,6 +5,7 @@
 
 import model from '../../db/db';
 import filterValue from '../../middleware/helper';
+import carValidator from '../../helper/carValidator';
 
 class Car {
   getCars(req, res) {
@@ -51,16 +52,12 @@ class Car {
   }
 
   postCarAd(req, res) {
-    if (
-      !req.body.state ||
-      !req.body.price ||
-      !req.body.manufacturer ||
-      !req.body.model ||
-      !req.body.body_type
-    ) {
+    const field = req.body;
+    const { error } = carValidator.validateCar(field);
+    if (error) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, Internal Server Error'
+        error: error.details.map(data => data.message).toString()
       });
     }
 

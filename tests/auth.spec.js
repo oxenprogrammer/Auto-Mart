@@ -22,10 +22,9 @@ describe('Auth', () => {
       first_name: 'emanuel',
       last_name: 'okello',
       email: 'ox@gmail.com',
-      password: '12345',
+      password: '12345n2jj',
       address: 'uganda',
       user_class: 'BUYER',
-      is_admin: false
     };
     token = jsonwebtoken.sign(
       { id: user.id, is_admin: user.is_admin, user_class: user.user_class },

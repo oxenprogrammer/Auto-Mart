@@ -179,7 +179,7 @@ describe('Car Adert', () => {
     describe('POST car Advert', () => {
       let myCar;
       beforeEach(done => {
-        myCar = car.goodCar;
+        myCar = car.newCar;
         done();
       });
 
@@ -203,7 +203,7 @@ describe('Car Adert', () => {
       });
 
       it('should return 400', done => {
-        delete car.goodCar.price;
+        delete car.newCar.price;
         chai
           .request(server)
           .post('/api/v1/car')

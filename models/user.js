@@ -11,7 +11,7 @@ user = {
   email: 'emmy1000okello@gmail.com',
   first_name: 'emanuel',
   last_name: 'okello',
-  password: '123456',
+  password: '123456nnnnnn',
   address: 'kampala',
   is_admin: true,
   user_class: 'SELLER'
@@ -23,7 +23,7 @@ buyer = {
   email: 'emmy1000okello@gmail.com',
   first_name: 'emanuel',
   last_name: 'okello',
-  password: '123456',
+  password: '123456hhhhh',
   address: 'kampala',
   is_admin: true,
   user_class: 'BUYER'
