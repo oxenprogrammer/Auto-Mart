@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc mocha --compilers js:babel-core/register --require babel-polyfill tests/*.spec.js --exit",
     "start": "nodemon server.js --exec babel-node --",
-    "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js"
+    "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
