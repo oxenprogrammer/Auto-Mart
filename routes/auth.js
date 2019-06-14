@@ -13,7 +13,6 @@ routerAuth.get('/api/v1/user', user.getUsers);
 // register user
 routerAuth.post('/api/v1/auth/signup', user.signUp);
 
-
 // login user
 routerAuth.post('/api/v1/auth/signin', user.login);
 

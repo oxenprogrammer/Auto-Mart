@@ -5,20 +5,23 @@
 
 import model from '../../db/db';
 import filterValue from '../../middleware/helper';
+import orderValidator from '../../helper/orderValidator';
 
 class Order {
   getOrders(req, res) {
     res.status(200).send({
       status: 200,
-      data: model.order,
+      data: model.order
     });
   }
 
   postCarOrder(req, res) {
-    if (!req.body.car_id || !req.body.amount) {
+    const field = req.body;
+    const { error } = orderValidator.validateOrder(field);
+    if (error) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, Internal Server Error',
+        error: error.details.map(data => data.message).toString()
       });
     }
 
@@ -32,7 +35,7 @@ class Order {
     if (!carId) {
       return res.status(404).send({
         status: 404,
-        error: `Car with ID ${req.body.car_id} not found`,
+        error: `Car with ID ${req.body.car_id} not found`
       });
     }
 
@@ -43,7 +46,7 @@ class Order {
       car_id: req.body.car_id,
       amount: req.body.amount,
       status: 'pending',
-      date_modified: Date.now(),
+      date_modified: Date.now()
     };
 
     model.order.push(carOrder);
@@ -56,8 +59,8 @@ class Order {
         orderedCar: carOrder.car_id,
         created_on: carOrder.created_on,
         amount: carOrder.price,
-        status: carOrder.status,
-      },
+        status: carOrder.status
+      }
     });
   }
 
@@ -67,17 +70,18 @@ class Order {
     if (!carOrder) {
       return res.status(404).send({
         status: 404,
-        error: `Purchase Order with ID ${req.params.id} not found`,
+        error: `Purchase Order with ID ${req.params.id} not found`
       });
+      // eslint-disable-next-line no-else-return
     } else if (!pending) {
       return res.status(404).send({
         status: 404,
-        error: `Vehicle ${carOrder.car_id} orders accepted or rejected already`,
+        error: `Vehicle ${carOrder.car_id} orders accepted or rejected already`
       });
     } else if (!req.body.amount) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong, internal server errror',
+        error: 'Something went wrong, internal server errror'
       });
     }
 
@@ -96,8 +100,8 @@ class Order {
         date_modified: Date.now(),
         old_price_offered: oldPrice,
         new_price_offered: carOrder.amount,
-        status: carOrder.status,
-      },
+        status: carOrder.status
+      }
     });
   }
 
@@ -110,22 +114,23 @@ class Order {
     if (!carOrder) {
       return res.status(404).send({
         status: 404,
-        error: `Order with Id ${req.params.id} not found`,
+        error: `Order with Id ${req.params.id} not found`
       });
+      // eslint-disable-next-line no-else-return
     } else if (carSeller.owner !== req.id) {
       return res.status(403).send({
         status: 403,
-        error: 'It is illegal to sell someone\'s else car',
+        error: "It is illegal to sell someone's else car"
       });
-    } else if (carOrder.status === 'accepted' || carOrder.status === 'rejected') {
+    } else if (carOrder.status !== 'pending') {
       return res.status(400).send({
         status: 400,
-        error: `This Order has already been ${carOrder.status}`,
+        error: `This Order has already been ${carOrder.status}`
       });
     } else if (!req.body.status) {
       return res.status(400).send({
         status: 400,
-        error: 'Something went wrong',
+        error: 'Something went wrong'
       });
     }
 
@@ -134,7 +139,7 @@ class Order {
 
     return res.status(200).send({
       status: 200,
-      data: carOrder,
+      data: carOrder
     });
   }
 }
